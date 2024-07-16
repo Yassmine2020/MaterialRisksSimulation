@@ -1,0 +1,1662 @@
+{
+    "Abrasives": {
+        "title": [
+            {
+                "text": "ABRASIVES (MANUFACTURED)",
+                "x0": 214.3,
+                "x1": 397.6,
+                "top": 37.452,
+                "doctop": 24623.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 183.3,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            34,
+            35
+        ]
+    },
+    "Fluorspar": {
+        "title": [
+            {
+                "text": "FLUORSPAR",
+                "x0": 268.7,
+                "x1": 343.3,
+                "top": 37.39200000000005,
+                "doctop": 57887.72556,
+                "bottom": 49.39200000000005,
+                "upright": true,
+                "height": 12.0,
+                "width": 74.66399999999999,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            76,
+            77
+        ]
+    },
+    "Mercury": {
+        "title": [
+            {
+                "text": "MERCURY",
+                "x0": 275.6,
+                "x1": 336.3,
+                "top": 37.452,
+                "doctop": 94319.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 60.624000000000024,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            122,
+            123
+        ]
+    },
+    "Silicon": {
+        "title": [
+            {
+                "text": "SILICON",
+                "x0": 281.6,
+                "x1": 330.3,
+                "top": 37.452,
+                "doctop": 127583.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 48.68399999999997,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            164,
+            165
+        ]
+    },
+    "Aluminum": {
+        "title": [
+            {
+                "text": "ALUMINUM",
+                "x0": 273.3,
+                "x1": 338.6,
+                "top": 37.452,
+                "doctop": 26207.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 65.31599999999997,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            36,
+            37
+        ]
+    },
+    "Gallium": {
+        "title": [
+            {
+                "text": "GALLIUM",
+                "x0": 278.6,
+                "x1": 333.3,
+                "top": 37.452,
+                "doctop": 59471.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 54.69599999999997,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            78,
+            79
+        ]
+    },
+    "Mica": {
+        "title": [
+            {
+                "text": "MICA (NATURAL)",
+                "x0": 256.0,
+                "x1": 356.0,
+                "top": 37.452,
+                "doctop": 95903.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 100.0,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            124,
+            125
+        ]
+    },
+    "Silver": {
+        "title": [
+            {
+                "text": "SILVER",
+                "x0": 284.3,
+                "x1": 327.6,
+                "top": 37.452,
+                "doctop": 129167.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 43.28399999999999,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            166,
+            167
+        ]
+    },
+    "Antimony": {
+        "title": [
+            {
+                "text": "ANTIMONY",
+                "x0": 274.0,
+                "x1": 338.0,
+                "top": 37.452,
+                "doctop": 27791.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 63.98399999999998,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            38,
+            39
+        ]
+    },
+    "Garnet": {
+        "title": [
+            {
+                "text": "GARNET (INDUSTRIAL)",
+                "x0": 238.7,
+                "x1": 373.4,
+                "top": 37.452,
+                "doctop": 61055.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 134.7,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            80,
+            81
+        ]
+    },
+    "Molybdenum": {
+        "title": [
+            {
+                "text": "MOLYBDENUM",
+                "x0": 262.3,
+                "x1": 349.6,
+                "top": 37.452,
+                "doctop": 97487.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 87.27600000000001,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            126,
+            127
+        ]
+    },
+    "Soda Ash": {
+        "title": [
+            {
+                "text": "SODA ASH",
+                "x0": 274.3,
+                "x1": 337.6,
+                "top": 37.452,
+                "doctop": 130751.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 63.30000000000001,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            168,
+            169
+        ]
+    },
+    "Arsenic": {
+        "title": [
+            {
+                "text": "ARSENIC",
+                "x0": 279.0,
+                "x1": 333.0,
+                "top": 37.452,
+                "doctop": 29375.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 53.964,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            40,
+            41
+        ]
+    },
+    "Gemstones": {
+        "title": [
+            {
+                "text": "GEMSTONES",
+                "x0": 267.7,
+                "x1": 344.3,
+                "top": 37.452,
+                "doctop": 62639.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 76.644,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            82,
+            83
+        ]
+    },
+    "Nickel": {
+        "title": [
+            {
+                "text": "NICKEL",
+                "x0": 283.7,
+                "x1": 328.3,
+                "top": 37.452,
+                "doctop": 99071.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 44.591999999999985,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            128,
+            129
+        ]
+    },
+    "Stone": {
+        "title": [
+            {
+                "text": "STONE (DIMENSION)",
+                "x0": 245.6,
+                "x1": 366.3,
+                "top": 37.452,
+                "doctop": 133919.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 120.70000000000002,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            170,
+            171,
+            172,
+            173
+        ]
+    },
+    "Asbestos": {
+        "title": [
+            {
+                "text": "ASBESTOS",
+                "x0": 273.0,
+                "x1": 339.0,
+                "top": 37.452,
+                "doctop": 30959.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 66.024,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            42,
+            43
+        ]
+    },
+    "Germanium": {
+        "title": [
+            {
+                "text": "GERMANIUM",
+                "x0": 268.3,
+                "x1": 343.6,
+                "top": 37.452,
+                "doctop": 64223.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 75.27600000000001,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            84,
+            85
+        ]
+    },
+    "Niobium": {
+        "title": [
+            {
+                "text": "NIOBIUM (COLUMBIUM)",
+                "x0": 237.0,
+                "x1": 375.0,
+                "top": 37.452,
+                "doctop": 100655.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 138.0,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            130,
+            131
+        ]
+    },
+    "Strontium": {
+        "title": [
+            {
+                "text": "STRONTIUM",
+                "x0": 270.3,
+                "x1": 341.6,
+                "top": 37.452,
+                "doctop": 135503.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 71.31599999999997,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            174,
+            175
+        ]
+    },
+    "Barite": {
+        "title": [
+            {
+                "text": "BARITE",
+                "x0": 283.7,
+                "x1": 328.4,
+                "top": 37.452,
+                "doctop": 32543.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 44.72399999999999,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            44,
+            45
+        ]
+    },
+    "Gold": {
+        "title": [
+            {
+                "text": "GOLD",
+                "x0": 288.7,
+                "x1": 323.4,
+                "top": 37.452,
+                "doctop": 65807.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 34.70400000000001,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            86,
+            87
+        ]
+    },
+    "Nitrogen": {
+        "title": [
+            {
+                "text": "NITROGEN (FIXED)—AMMONIA",
+                "x0": 215.6,
+                "x1": 396.3,
+                "top": 37.452,
+                "doctop": 102239.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 180.70000000000002,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            132,
+            133
+        ]
+    },
+    "Sulfur": {
+        "title": [
+            {
+                "text": "SULFUR",
+                "x0": 281.6,
+                "x1": 330.3,
+                "top": 37.452,
+                "doctop": 137087.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 48.62399999999997,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            176,
+            177
+        ]
+    },
+    "Bauxite": {
+        "title": [
+            {
+                "text": "BAUXITE AND ALUMINA",
+                "x0": 235.7,
+                "x1": 376.3,
+                "top": 37.452,
+                "doctop": 34127.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 140.60000000000002,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            46,
+            47
+        ]
+    },
+    "Graphite": {
+        "title": [
+            {
+                "text": "GRAPHITE (NATURAL)",
+                "x0": 240.4,
+                "x1": 371.7,
+                "top": 37.452,
+                "doctop": 67391.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 131.29999999999998,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            88,
+            89
+        ]
+    },
+    "Palladium": {
+        "title": "",
+        "pages": []
+    },
+    "Talc": {
+        "title": [
+            {
+                "text": "TALC AND PYROPHYLLITE",
+                "x0": 227.6,
+                "x1": 384.3,
+                "top": 37.452,
+                "doctop": 138671.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 156.70000000000002,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            178,
+            179
+        ]
+    },
+    "Beryllium": {
+        "title": [
+            {
+                "text": "BERYLLIUM",
+                "x0": 271.0,
+                "x1": 341.0,
+                "top": 37.452,
+                "doctop": 35711.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 69.99599999999998,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            48,
+            49
+        ]
+    },
+    "Gypsum": {
+        "title": [
+            {
+                "text": "GYPSUM",
+                "x0": 280.0,
+                "x1": 331.9,
+                "top": 37.452,
+                "doctop": 68975.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 51.93599999999998,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            90,
+            91
+        ]
+    },
+    "Peat": {
+        "title": [
+            {
+                "text": "PEAT",
+                "x0": 290.0,
+                "x1": 322.0,
+                "top": 37.452,
+                "doctop": 103823.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 31.99200000000002,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            134,
+            135
+        ]
+    },
+    "Tantalum": {
+        "title": [
+            {
+                "text": "TANTALUM",
+                "x0": 272.6,
+                "x1": 339.3,
+                "top": 37.452,
+                "doctop": 140255.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 66.63599999999997,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            180,
+            181
+        ]
+    },
+    "Bismuth": {
+        "title": [
+            {
+                "text": "BISMUTH",
+                "x0": 278.6,
+                "x1": 333.3,
+                "top": 37.452,
+                "doctop": 37295.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 54.68399999999997,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            50,
+            51
+        ]
+    },
+    "Hafnium": {
+        "title": [
+            {
+                "text": "ZIRCONIUM AND HAFNIUM",
+                "x0": 228.0,
+                "x1": 384.0,
+                "top": 37.452,
+                "doctop": 162431.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 156.0,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            208,
+            209
+        ]
+    },
+    "Perlite": {
+        "title": [
+            {
+                "text": "PERLITE",
+                "x0": 280.7,
+                "x1": 331.3,
+                "top": 37.452,
+                "doctop": 105407.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 50.664000000000044,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            136,
+            137
+        ]
+    },
+    "Tellurium": {
+        "title": [
+            {
+                "text": "TELLURIUM",
+                "x0": 271.3,
+                "x1": 340.7,
+                "top": 37.452,
+                "doctop": 141839.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 69.33599999999996,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            182,
+            183
+        ]
+    },
+    "Boron": {
+        "title": [
+            {
+                "text": "BORON",
+                "x0": 283.7,
+                "x1": 328.3,
+                "top": 37.452,
+                "doctop": 38879.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 44.66399999999999,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            52,
+            53
+        ]
+    },
+    "Helium": {
+        "title": [
+            {
+                "text": "HELIUM",
+                "x0": 283.0,
+                "x1": 328.9,
+                "top": 37.452,
+                "doctop": 70559.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 45.93599999999998,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            92,
+            93
+        ]
+    },
+    "Phosphate Rock": {
+        "title": [
+            {
+                "text": "PHOSPHATE ROCK",
+                "x0": 249.3,
+                "x1": 362.7,
+                "top": 37.452,
+                "doctop": 106991.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 113.39999999999998,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            138,
+            139
+        ]
+    },
+    "Thallium": {
+        "title": [
+            {
+                "text": "THALLIUM",
+                "x0": 275.3,
+                "x1": 336.7,
+                "top": 37.452,
+                "doctop": 143423.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 61.35599999999994,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            184,
+            185
+        ]
+    },
+    "Bromine": {
+        "title": [
+            {
+                "text": "BROMINE",
+                "x0": 277.7,
+                "x1": 334.3,
+                "top": 37.452,
+                "doctop": 40463.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 56.664000000000044,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            54,
+            55
+        ]
+    },
+    "Indium": {
+        "title": [
+            {
+                "text": "INDIUM",
+                "x0": 284.6,
+                "x1": 327.3,
+                "top": 37.452,
+                "doctop": 72143.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 42.63599999999997,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            94,
+            95
+        ]
+    },
+    "Platinum": {
+        "title": [
+            {
+                "text": "PLATINUM-GROUP METALS",
+                "x0": 224.6,
+                "x1": 387.3,
+                "top": 37.39200000000005,
+                "doctop": 108575.72556,
+                "bottom": 49.39200000000005,
+                "upright": true,
+                "height": 12.0,
+                "width": 162.70000000000002,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            140,
+            141
+        ]
+    },
+    "Thorium": {
+        "title": [
+            {
+                "text": "THORIUM",
+                "x0": 278.0,
+                "x1": 334.0,
+                "top": 37.452,
+                "doctop": 145007.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 56.01599999999996,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            186,
+            187
+        ]
+    },
+    "Cadmium": {
+        "title": [
+            {
+                "text": "CADMIUM",
+                "x0": 277.0,
+                "x1": 335.0,
+                "top": 37.452,
+                "doctop": 42047.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 57.99599999999998,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            56,
+            57
+        ]
+    },
+    "Iodine": {
+        "title": [
+            {
+                "text": "IODINE",
+                "x0": 285.3,
+                "x1": 326.7,
+                "top": 37.452,
+                "doctop": 73727.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 41.36400000000003,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            96,
+            97
+        ]
+    },
+    "Potash": {
+        "title": [
+            {
+                "text": "POTASH",
+                "x0": 281.0,
+                "x1": 331.0,
+                "top": 37.452,
+                "doctop": 110159.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 50.063999999999965,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            142,
+            143
+        ]
+    },
+    "Tin": {
+        "title": [
+            {
+                "text": "TIN",
+                "x0": 296.3,
+                "x1": 315.7,
+                "top": 37.452,
+                "doctop": 146591.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 19.403999999999996,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            188,
+            189
+        ]
+    },
+    "Cement": {
+        "title": [
+            {
+                "text": "CEMENT",
+                "x0": 280.7,
+                "x1": 331.3,
+                "top": 37.452,
+                "doctop": 43631.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 50.591999999999985,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            58,
+            59
+        ]
+    },
+    "Iron and Steel": {
+        "title": [
+            {
+                "text": "IRON AND STEEL SLAG",
+                "x0": 237.0,
+                "x1": 375.0,
+                "top": 37.452,
+                "doctop": 78479.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 138.0,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            98,
+            99,
+            100,
+            101,
+            102,
+            103
+        ]
+    },
+    "Pumice": {
+        "title": [
+            {
+                "text": "PUMICE AND PUMICITE",
+                "x0": 237.7,
+                "x1": 374.4,
+                "top": 37.452,
+                "doctop": 111743.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 136.7,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            144,
+            145
+        ]
+    },
+    "Titanium": {
+        "title": [
+            {
+                "text": "TITANIUM MINERAL CONCENTRATES",
+                "x0": 196.6,
+                "x1": 415.3,
+                "top": 37.452,
+                "doctop": 149759.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 218.70000000000002,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            190,
+            191,
+            192,
+            193
+        ]
+    },
+    "Cesium": {
+        "title": [
+            {
+                "text": "CESIUM",
+                "x0": 282.7,
+                "x1": 329.3,
+                "top": 37.452,
+                "doctop": 45215.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 46.596000000000004,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            60,
+            61
+        ]
+    },
+    "Iron Ore": {
+        "title": [
+            {
+                "text": "IRON ORE",
+                "x0": 276.3,
+                "x1": 335.7,
+                "top": 37.452,
+                "doctop": 80063.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 59.39999999999998,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            104,
+            105
+        ]
+    },
+    "Quartz": {
+        "title": [
+            {
+                "text": "QUARTZ (HIGH-PURITY AND INDUSTRIAL CULTURED CRYSTAL)",
+                "x0": 119.3,
+                "x1": 492.5,
+                "top": 37.452,
+                "doctop": 113327.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 373.2,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            146,
+            147
+        ]
+    },
+    "Tungsten": {
+        "title": [
+            {
+                "text": "TUNGSTEN",
+                "x0": 273.0,
+                "x1": 339.0,
+                "top": 37.452,
+                "doctop": 151343.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 66.024,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            194,
+            195
+        ]
+    },
+    "Chromium": {
+        "title": [
+            {
+                "text": "CHROMIUM",
+                "x0": 272.3,
+                "x1": 339.6,
+                "top": 37.452,
+                "doctop": 46799.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 67.29599999999999,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            62,
+            63
+        ]
+    },
+    "Iron Oxide Pigments": {
+        "title": [
+            {
+                "text": "IRON OXIDE PIGMENTS",
+                "x0": 237.7,
+                "x1": 374.4,
+                "top": 37.452,
+                "doctop": 81647.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 136.7,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            106,
+            107
+        ]
+    },
+    "Rare Earths": {
+        "title": [
+            {
+                "text": "RARE EARTHS",
+                "x0": 262.7,
+                "x1": 349.3,
+                "top": 37.452,
+                "doctop": 114911.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 86.60000000000002,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            148,
+            149
+        ]
+    },
+    "Vanadium": {
+        "title": [
+            {
+                "text": "VANADIUM",
+                "x0": 273.7,
+                "x1": 338.3,
+                "top": 37.452,
+                "doctop": 152927.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 64.656,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            196,
+            197
+        ]
+    },
+    "Clays": {
+        "title": [
+            {
+                "text": "CLAYS",
+                "x0": 285.7,
+                "x1": 326.3,
+                "top": 37.452,
+                "doctop": 48383.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 40.644000000000005,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            64,
+            65
+        ]
+    },
+    "Kyanite": {
+        "title": [
+            {
+                "text": "KYANITE AND RELATED MINERALS",
+                "x0": 202.0,
+                "x1": 409.9,
+                "top": 37.452,
+                "doctop": 83231.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 207.89999999999998,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            108,
+            109
+        ]
+    },
+    "Rhenium": {
+        "title": [
+            {
+                "text": "RHENIUM",
+                "x0": 278.0,
+                "x1": 333.9,
+                "top": 37.452,
+                "doctop": 116495.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 55.95600000000002,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            150,
+            151
+        ]
+    },
+    "Vermiculite": {
+        "title": [
+            {
+                "text": "VERMICULITE",
+                "x0": 265.3,
+                "x1": 346.7,
+                "top": 37.452,
+                "doctop": 154511.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 81.38400000000001,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            198,
+            199
+        ]
+    },
+    "Cobalt": {
+        "title": [
+            {
+                "text": "COBALT",
+                "x0": 281.0,
+                "x1": 331.0,
+                "top": 37.452,
+                "doctop": 49967.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 49.99200000000002,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            66,
+            67
+        ]
+    },
+    "Lead": {
+        "title": [
+            {
+                "text": "LEAD",
+                "x0": 289.7,
+                "x1": 322.3,
+                "top": 37.452,
+                "doctop": 84815.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 32.66399999999999,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            110,
+            111
+        ]
+    },
+    "Rubidium": {
+        "title": [
+            {
+                "text": "RUBIDIUM",
+                "x0": 276.0,
+                "x1": 335.9,
+                "top": 37.452,
+                "doctop": 118079.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 59.916,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            152,
+            153
+        ]
+    },
+    "Wollastonite": {
+        "title": [
+            {
+                "text": "WOLLASTONITE",
+                "x0": 258.0,
+                "x1": 354.1,
+                "top": 37.452,
+                "doctop": 156095.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 96.08519999999999,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            200,
+            201
+        ]
+    },
+    "Copper": {
+        "title": [
+            {
+                "text": "COPPER",
+                "x0": 280.6,
+                "x1": 331.3,
+                "top": 37.452,
+                "doctop": 51551.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 50.66399999999999,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            68,
+            69
+        ]
+    },
+    "Lime": {
+        "title": [
+            {
+                "text": "LIME",
+                "x0": 291.7,
+                "x1": 320.4,
+                "top": 37.452,
+                "doctop": 86399.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 28.704000000000008,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            112,
+            113
+        ]
+    },
+    "Salt": {
+        "title": [
+            {
+                "text": "SALT",
+                "x0": 290.3,
+                "x1": 321.7,
+                "top": 37.452,
+                "doctop": 119663.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 31.331999999999994,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            154,
+            155
+        ]
+    },
+    "Yttrium": {
+        "title": [
+            {
+                "text": "YTTRIUM",
+                "x0": 279.3,
+                "x1": 332.7,
+                "top": 37.452,
+                "doctop": 157679.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 53.375999999999976,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            202,
+            203
+        ]
+    },
+    "Diamond": {
+        "title": [
+            {
+                "text": "DIAMOND (INDUSTRIAL)",
+                "x0": 235.3,
+                "x1": 376.7,
+                "top": 37.452,
+                "doctop": 53135.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 141.39999999999998,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            70,
+            71
+        ]
+    },
+    "Lithium": {
+        "title": [
+            {
+                "text": "LITHIUM",
+                "x0": 281.6,
+                "x1": 330.3,
+                "top": 37.452,
+                "doctop": 87983.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 48.69599999999997,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            114,
+            115
+        ]
+    },
+    "Sand and Gravel": {
+        "title": [
+            {
+                "text": "SAND AND GRAVEL (INDUSTRIAL)",
+                "x0": 205.7,
+                "x1": 406.4,
+                "top": 37.452,
+                "doctop": 122831.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 200.7,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            156,
+            157,
+            158,
+            159
+        ]
+    },
+    "Zeolites": {
+        "title": [
+            {
+                "text": "ZEOLITES (NATURAL)",
+                "x0": 242.0,
+                "x1": 369.9,
+                "top": 37.452,
+                "doctop": 159263.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 127.89999999999998,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            204,
+            205
+        ]
+    },
+    "Diatomite": {
+        "title": [
+            {
+                "text": "DIATOMITE",
+                "x0": 273.0,
+                "x1": 339.0,
+                "top": 37.452,
+                "doctop": 54719.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 65.964,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            72,
+            73
+        ]
+    },
+    "Magnesium": {
+        "title": [
+            {
+                "text": "MAGNESIUM METAL",
+                "x0": 246.4,
+                "x1": 365.7,
+                "top": 37.452,
+                "doctop": 91151.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 119.29999999999998,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            116,
+            117,
+            118,
+            119
+        ]
+    },
+    "Scandium": {
+        "title": [
+            {
+                "text": "SCANDIUM",
+                "x0": 273.7,
+                "x1": 338.3,
+                "top": 37.452,
+                "doctop": 124415.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 64.656,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            160,
+            161
+        ]
+    },
+    "Zinc": {
+        "title": [
+            {
+                "text": "ZINC",
+                "x0": 292.0,
+                "x1": 319.9,
+                "top": 37.452,
+                "doctop": 160847.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 27.98399999999998,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            206,
+            207
+        ]
+    },
+    "Feldspar": {
+        "title": [
+            {
+                "text": "FELDSPAR AND NEPHELINE SYENITE",
+                "x0": 195.7,
+                "x1": 416.4,
+                "top": 37.452,
+                "doctop": 56303.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 220.7,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            74,
+            75
+        ]
+    },
+    "Manganese": {
+        "title": [
+            {
+                "text": "MANGANESE",
+                "x0": 267.0,
+                "x1": 345.0,
+                "top": 37.452,
+                "doctop": 92735.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 77.96400000000006,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            120,
+            121
+        ]
+    },
+    "Selenium": {
+        "title": [
+            {
+                "text": "SELENIUM",
+                "x0": 275.0,
+                "x1": 337.0,
+                "top": 37.452,
+                "doctop": 125999.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 62.01599999999996,
+                "direction": "ltr"
+            }
+        ],
+        "pages": [
+            162,
+            163
+        ]
+    },
+    "Zirconium": {
+        "title": "",
+        "pages": []
+    }
+}
