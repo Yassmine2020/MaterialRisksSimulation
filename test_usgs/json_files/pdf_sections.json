@@ -5,13 +5,27 @@
                 "text": "ABRASIVES (MANUFACTURED)",
                 "x0": 214.3,
                 "x1": 397.6,
+                "top": 37.33200000000011,
+                "doctop": 23831.665559999998,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 183.3,
+                "direction": "ltr",
+                "page": 33
+            },
+            {
+                "text": "ABRASIVES (MANUFACTURED)",
+                "x0": 214.3,
+                "x1": 397.6,
                 "top": 37.452,
                 "doctop": 24623.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 183.3,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 34
             }
         ],
         "pages": [
@@ -25,13 +39,27 @@
                 "text": "FLUORSPAR",
                 "x0": 268.7,
                 "x1": 343.3,
+                "top": 37.271999999999935,
+                "doctop": 57095.605559999996,
+                "bottom": 49.271999999999935,
+                "upright": true,
+                "height": 12.0,
+                "width": 74.66399999999999,
+                "direction": "ltr",
+                "page": 75
+            },
+            {
+                "text": "FLUORSPAR",
+                "x0": 268.7,
+                "x1": 343.3,
                 "top": 37.39200000000005,
                 "doctop": 57887.72556,
                 "bottom": 49.39200000000005,
                 "upright": true,
                 "height": 12.0,
                 "width": 74.66399999999999,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 76
             }
         ],
         "pages": [
@@ -45,13 +73,27 @@
                 "text": "MERCURY",
                 "x0": 275.6,
                 "x1": 336.3,
+                "top": 37.33200000000011,
+                "doctop": 93527.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 60.624000000000024,
+                "direction": "ltr",
+                "page": 121
+            },
+            {
+                "text": "MERCURY",
+                "x0": 275.6,
+                "x1": 336.3,
                 "top": 37.452,
                 "doctop": 94319.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 60.624000000000024,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 122
             }
         ],
         "pages": [
@@ -65,13 +107,27 @@
                 "text": "SILICON",
                 "x0": 281.6,
                 "x1": 330.3,
+                "top": 37.33200000000011,
+                "doctop": 126791.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 48.68399999999997,
+                "direction": "ltr",
+                "page": 163
+            },
+            {
+                "text": "SILICON",
+                "x0": 281.6,
+                "x1": 330.3,
                 "top": 37.452,
                 "doctop": 127583.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 48.68399999999997,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 164
             }
         ],
         "pages": [
@@ -82,6 +138,19 @@
     "Aluminum": {
         "title": [
             {
+                "text": "ALUMINUM1",
+                "x0": 271.1,
+                "x1": 340.9,
+                "top": 35.820479999999975,
+                "doctop": 25414.154039999998,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 13.511520000000132,
+                "width": 69.77688,
+                "direction": "ltr",
+                "page": 35
+            },
+            {
                 "text": "ALUMINUM",
                 "x0": 273.3,
                 "x1": 338.6,
@@ -91,7 +160,8 @@
                 "upright": true,
                 "height": 12.0,
                 "width": 65.31599999999997,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 36
             }
         ],
         "pages": [
@@ -105,13 +175,27 @@
                 "text": "GALLIUM",
                 "x0": 278.6,
                 "x1": 333.3,
+                "top": 37.33200000000011,
+                "doctop": 58679.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 54.69599999999997,
+                "direction": "ltr",
+                "page": 77
+            },
+            {
+                "text": "GALLIUM",
+                "x0": 278.6,
+                "x1": 333.3,
                 "top": 37.452,
                 "doctop": 59471.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 54.69599999999997,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 78
             }
         ],
         "pages": [
@@ -125,13 +209,27 @@
                 "text": "MICA (NATURAL)",
                 "x0": 256.0,
                 "x1": 356.0,
+                "top": 37.33200000000011,
+                "doctop": 95111.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 100.0,
+                "direction": "ltr",
+                "page": 123
+            },
+            {
+                "text": "MICA (NATURAL)",
+                "x0": 256.0,
+                "x1": 356.0,
                 "top": 37.452,
                 "doctop": 95903.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 100.0,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 124
             }
         ],
         "pages": [
@@ -145,13 +243,27 @@
                 "text": "SILVER",
                 "x0": 284.3,
                 "x1": 327.6,
+                "top": 37.33200000000011,
+                "doctop": 128375.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 43.28399999999999,
+                "direction": "ltr",
+                "page": 165
+            },
+            {
+                "text": "SILVER",
+                "x0": 284.3,
+                "x1": 327.6,
                 "top": 37.452,
                 "doctop": 129167.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 43.28399999999999,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 166
             }
         ],
         "pages": [
@@ -165,13 +277,27 @@
                 "text": "ANTIMONY",
                 "x0": 274.0,
                 "x1": 338.0,
+                "top": 37.33200000000011,
+                "doctop": 26999.665559999998,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 63.98399999999998,
+                "direction": "ltr",
+                "page": 37
+            },
+            {
+                "text": "ANTIMONY",
+                "x0": 274.0,
+                "x1": 338.0,
                 "top": 37.452,
                 "doctop": 27791.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 63.98399999999998,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 38
             }
         ],
         "pages": [
@@ -182,6 +308,19 @@
     "Garnet": {
         "title": [
             {
+                "text": "GARNET (INDUSTRIAL)1",
+                "x0": 236.5,
+                "x1": 375.6,
+                "top": 35.820479999999975,
+                "doctop": 60262.15404,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 13.511520000000132,
+                "width": 139.10000000000002,
+                "direction": "ltr",
+                "page": 79
+            },
+            {
                 "text": "GARNET (INDUSTRIAL)",
                 "x0": 238.7,
                 "x1": 373.4,
@@ -191,7 +330,8 @@
                 "upright": true,
                 "height": 12.0,
                 "width": 134.7,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 80
             }
         ],
         "pages": [
@@ -205,13 +345,27 @@
                 "text": "MOLYBDENUM",
                 "x0": 262.3,
                 "x1": 349.6,
+                "top": 37.33200000000011,
+                "doctop": 96695.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 87.27600000000001,
+                "direction": "ltr",
+                "page": 125
+            },
+            {
+                "text": "MOLYBDENUM",
+                "x0": 262.3,
+                "x1": 349.6,
                 "top": 37.452,
                 "doctop": 97487.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 87.27600000000001,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 126
             }
         ],
         "pages": [
@@ -225,13 +379,27 @@
                 "text": "SODA ASH",
                 "x0": 274.3,
                 "x1": 337.6,
+                "top": 37.33200000000011,
+                "doctop": 129959.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 63.30000000000001,
+                "direction": "ltr",
+                "page": 167
+            },
+            {
+                "text": "SODA ASH",
+                "x0": 274.3,
+                "x1": 337.6,
                 "top": 37.452,
                 "doctop": 130751.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 63.30000000000001,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 168
             }
         ],
         "pages": [
@@ -245,13 +413,27 @@
                 "text": "ARSENIC",
                 "x0": 279.0,
                 "x1": 333.0,
+                "top": 37.33200000000011,
+                "doctop": 28583.665559999998,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 53.964,
+                "direction": "ltr",
+                "page": 39
+            },
+            {
+                "text": "ARSENIC",
+                "x0": 279.0,
+                "x1": 333.0,
                 "top": 37.452,
                 "doctop": 29375.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 53.964,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 40
             }
         ],
         "pages": [
@@ -262,6 +444,19 @@
     "Gemstones": {
         "title": [
             {
+                "text": "GEMSTONES1",
+                "x0": 265.4,
+                "x1": 346.5,
+                "top": 35.820479999999975,
+                "doctop": 61846.15404,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 13.511520000000132,
+                "width": 81.05687999999998,
+                "direction": "ltr",
+                "page": 81
+            },
+            {
                 "text": "GEMSTONES",
                 "x0": 267.7,
                 "x1": 344.3,
@@ -271,7 +466,8 @@
                 "upright": true,
                 "height": 12.0,
                 "width": 76.644,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 82
             }
         ],
         "pages": [
@@ -285,13 +481,27 @@
                 "text": "NICKEL",
                 "x0": 283.7,
                 "x1": 328.3,
+                "top": 37.33200000000011,
+                "doctop": 98279.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 44.591999999999985,
+                "direction": "ltr",
+                "page": 127
+            },
+            {
+                "text": "NICKEL",
+                "x0": 283.7,
+                "x1": 328.3,
                 "top": 37.452,
                 "doctop": 99071.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 44.591999999999985,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 128
             }
         ],
         "pages": [
@@ -302,6 +512,45 @@
     "Stone": {
         "title": [
             {
+                "text": "STONE (CRUSHED)1",
+                "x0": 247.7,
+                "x1": 364.1,
+                "top": 35.820479999999975,
+                "doctop": 131542.15404,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 13.511520000000132,
+                "width": 116.40000000000003,
+                "direction": "ltr",
+                "page": 169
+            },
+            {
+                "text": "STONE (CRUSHED)",
+                "x0": 250.0,
+                "x1": 361.9,
+                "top": 37.452,
+                "doctop": 132335.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 111.89999999999998,
+                "direction": "ltr",
+                "page": 170
+            },
+            {
+                "text": "STONE (DIMENSION)1",
+                "x0": 243.4,
+                "x1": 368.5,
+                "top": 35.820479999999975,
+                "doctop": 133126.15404,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 13.511520000000132,
+                "width": 125.1,
+                "direction": "ltr",
+                "page": 171
+            },
+            {
                 "text": "STONE (DIMENSION)",
                 "x0": 245.6,
                 "x1": 366.3,
@@ -311,7 +560,8 @@
                 "upright": true,
                 "height": 12.0,
                 "width": 120.70000000000002,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 172
             }
         ],
         "pages": [
@@ -327,13 +577,27 @@
                 "text": "ASBESTOS",
                 "x0": 273.0,
                 "x1": 339.0,
+                "top": 37.33200000000011,
+                "doctop": 30167.665559999998,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 66.024,
+                "direction": "ltr",
+                "page": 41
+            },
+            {
+                "text": "ASBESTOS",
+                "x0": 273.0,
+                "x1": 339.0,
                 "top": 37.452,
                 "doctop": 30959.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 66.024,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 42
             }
         ],
         "pages": [
@@ -347,13 +611,27 @@
                 "text": "GERMANIUM",
                 "x0": 268.3,
                 "x1": 343.6,
+                "top": 37.33200000000011,
+                "doctop": 63431.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 75.27600000000001,
+                "direction": "ltr",
+                "page": 83
+            },
+            {
+                "text": "GERMANIUM",
+                "x0": 268.3,
+                "x1": 343.6,
                 "top": 37.452,
                 "doctop": 64223.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 75.27600000000001,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 84
             }
         ],
         "pages": [
@@ -367,13 +645,27 @@
                 "text": "NIOBIUM (COLUMBIUM)",
                 "x0": 237.0,
                 "x1": 375.0,
+                "top": 37.33200000000011,
+                "doctop": 99863.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 138.0,
+                "direction": "ltr",
+                "page": 129
+            },
+            {
+                "text": "NIOBIUM (COLUMBIUM)",
+                "x0": 237.0,
+                "x1": 375.0,
                 "top": 37.452,
                 "doctop": 100655.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 138.0,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 130
             }
         ],
         "pages": [
@@ -387,13 +679,27 @@
                 "text": "STRONTIUM",
                 "x0": 270.3,
                 "x1": 341.6,
+                "top": 37.33200000000011,
+                "doctop": 134711.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 71.31599999999997,
+                "direction": "ltr",
+                "page": 173
+            },
+            {
+                "text": "STRONTIUM",
+                "x0": 270.3,
+                "x1": 341.6,
                 "top": 37.452,
                 "doctop": 135503.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 71.31599999999997,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 174
             }
         ],
         "pages": [
@@ -407,13 +713,27 @@
                 "text": "BARITE",
                 "x0": 283.7,
                 "x1": 328.4,
+                "top": 37.33200000000011,
+                "doctop": 31751.665559999998,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 44.72399999999999,
+                "direction": "ltr",
+                "page": 43
+            },
+            {
+                "text": "BARITE",
+                "x0": 283.7,
+                "x1": 328.4,
                 "top": 37.452,
                 "doctop": 32543.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 44.72399999999999,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 44
             }
         ],
         "pages": [
@@ -427,13 +747,27 @@
                 "text": "GOLD",
                 "x0": 288.7,
                 "x1": 323.4,
+                "top": 37.33200000000011,
+                "doctop": 65015.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 34.70400000000001,
+                "direction": "ltr",
+                "page": 85
+            },
+            {
+                "text": "GOLD",
+                "x0": 288.7,
+                "x1": 323.4,
                 "top": 37.452,
                 "doctop": 65807.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 34.70400000000001,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 86
             }
         ],
         "pages": [
@@ -447,13 +781,27 @@
                 "text": "NITROGEN (FIXED)—AMMONIA",
                 "x0": 215.6,
                 "x1": 396.3,
+                "top": 37.33200000000011,
+                "doctop": 101447.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 180.70000000000002,
+                "direction": "ltr",
+                "page": 131
+            },
+            {
+                "text": "NITROGEN (FIXED)—AMMONIA",
+                "x0": 215.6,
+                "x1": 396.3,
                 "top": 37.452,
                 "doctop": 102239.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 180.70000000000002,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 132
             }
         ],
         "pages": [
@@ -467,13 +815,27 @@
                 "text": "SULFUR",
                 "x0": 281.6,
                 "x1": 330.3,
+                "top": 37.33200000000011,
+                "doctop": 136295.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 48.62399999999997,
+                "direction": "ltr",
+                "page": 175
+            },
+            {
+                "text": "SULFUR",
+                "x0": 281.6,
+                "x1": 330.3,
                 "top": 37.452,
                 "doctop": 137087.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 48.62399999999997,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 176
             }
         ],
         "pages": [
@@ -484,6 +846,19 @@
     "Bauxite": {
         "title": [
             {
+                "text": "BAUXITE AND ALUMINA1",
+                "x0": 233.5,
+                "x1": 378.6,
+                "top": 35.820479999999975,
+                "doctop": 33334.15404,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 13.511520000000132,
+                "width": 145.10000000000002,
+                "direction": "ltr",
+                "page": 45
+            },
+            {
                 "text": "BAUXITE AND ALUMINA",
                 "x0": 235.7,
                 "x1": 376.3,
@@ -493,7 +868,8 @@
                 "upright": true,
                 "height": 12.0,
                 "width": 140.60000000000002,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 46
             }
         ],
         "pages": [
@@ -507,13 +883,27 @@
                 "text": "GRAPHITE (NATURAL)",
                 "x0": 240.4,
                 "x1": 371.7,
+                "top": 37.33200000000011,
+                "doctop": 66599.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 131.29999999999998,
+                "direction": "ltr",
+                "page": 87
+            },
+            {
+                "text": "GRAPHITE (NATURAL)",
+                "x0": 240.4,
+                "x1": 371.7,
                 "top": 37.452,
                 "doctop": 67391.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 131.29999999999998,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 88
             }
         ],
         "pages": [
@@ -522,11 +912,24 @@
         ]
     },
     "Palladium": {
-        "title": "",
+        "title": [],
         "pages": []
     },
     "Talc": {
         "title": [
+            {
+                "text": "TALC AND PYROPHYLLITE1",
+                "x0": 225.4,
+                "x1": 386.5,
+                "top": 35.820479999999975,
+                "doctop": 137878.15404,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 13.511520000000132,
+                "width": 161.1,
+                "direction": "ltr",
+                "page": 177
+            },
             {
                 "text": "TALC AND PYROPHYLLITE",
                 "x0": 227.6,
@@ -537,7 +940,8 @@
                 "upright": true,
                 "height": 12.0,
                 "width": 156.70000000000002,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 178
             }
         ],
         "pages": [
@@ -551,13 +955,27 @@
                 "text": "BERYLLIUM",
                 "x0": 271.0,
                 "x1": 341.0,
+                "top": 37.33200000000011,
+                "doctop": 34919.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 69.99599999999998,
+                "direction": "ltr",
+                "page": 47
+            },
+            {
+                "text": "BERYLLIUM",
+                "x0": 271.0,
+                "x1": 341.0,
                 "top": 37.452,
                 "doctop": 35711.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 69.99599999999998,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 48
             }
         ],
         "pages": [
@@ -571,13 +989,27 @@
                 "text": "GYPSUM",
                 "x0": 280.0,
                 "x1": 331.9,
+                "top": 37.33200000000011,
+                "doctop": 68183.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 51.93599999999998,
+                "direction": "ltr",
+                "page": 89
+            },
+            {
+                "text": "GYPSUM",
+                "x0": 280.0,
+                "x1": 331.9,
                 "top": 37.452,
                 "doctop": 68975.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 51.93599999999998,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 90
             }
         ],
         "pages": [
@@ -591,13 +1023,27 @@
                 "text": "PEAT",
                 "x0": 290.0,
                 "x1": 322.0,
+                "top": 37.33200000000011,
+                "doctop": 103031.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 31.99200000000002,
+                "direction": "ltr",
+                "page": 133
+            },
+            {
+                "text": "PEAT",
+                "x0": 290.0,
+                "x1": 322.0,
                 "top": 37.452,
                 "doctop": 103823.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 31.99200000000002,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 134
             }
         ],
         "pages": [
@@ -611,13 +1057,27 @@
                 "text": "TANTALUM",
                 "x0": 272.6,
                 "x1": 339.3,
+                "top": 37.33200000000011,
+                "doctop": 139463.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 66.63599999999997,
+                "direction": "ltr",
+                "page": 179
+            },
+            {
+                "text": "TANTALUM",
+                "x0": 272.6,
+                "x1": 339.3,
                 "top": 37.452,
                 "doctop": 140255.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 66.63599999999997,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 180
             }
         ],
         "pages": [
@@ -631,13 +1091,27 @@
                 "text": "BISMUTH",
                 "x0": 278.6,
                 "x1": 333.3,
+                "top": 37.33200000000011,
+                "doctop": 36503.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 54.68399999999997,
+                "direction": "ltr",
+                "page": 49
+            },
+            {
+                "text": "BISMUTH",
+                "x0": 278.6,
+                "x1": 333.3,
                 "top": 37.452,
                 "doctop": 37295.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 54.68399999999997,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 50
             }
         ],
         "pages": [
@@ -651,13 +1125,27 @@
                 "text": "ZIRCONIUM AND HAFNIUM",
                 "x0": 228.0,
                 "x1": 384.0,
+                "top": 37.33200000000011,
+                "doctop": 161639.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 156.0,
+                "direction": "ltr",
+                "page": 207
+            },
+            {
+                "text": "ZIRCONIUM AND HAFNIUM",
+                "x0": 228.0,
+                "x1": 384.0,
                 "top": 37.452,
                 "doctop": 162431.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 156.0,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 208
             }
         ],
         "pages": [
@@ -671,13 +1159,27 @@
                 "text": "PERLITE",
                 "x0": 280.7,
                 "x1": 331.3,
+                "top": 37.33200000000011,
+                "doctop": 104615.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 50.664000000000044,
+                "direction": "ltr",
+                "page": 135
+            },
+            {
+                "text": "PERLITE",
+                "x0": 280.7,
+                "x1": 331.3,
                 "top": 37.452,
                 "doctop": 105407.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 50.664000000000044,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 136
             }
         ],
         "pages": [
@@ -691,13 +1193,27 @@
                 "text": "TELLURIUM",
                 "x0": 271.3,
                 "x1": 340.7,
+                "top": 37.33200000000011,
+                "doctop": 141047.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 69.33599999999996,
+                "direction": "ltr",
+                "page": 181
+            },
+            {
+                "text": "TELLURIUM",
+                "x0": 271.3,
+                "x1": 340.7,
                 "top": 37.452,
                 "doctop": 141839.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 69.33599999999996,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 182
             }
         ],
         "pages": [
@@ -711,13 +1227,27 @@
                 "text": "BORON",
                 "x0": 283.7,
                 "x1": 328.3,
+                "top": 37.33200000000011,
+                "doctop": 38087.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 44.66399999999999,
+                "direction": "ltr",
+                "page": 51
+            },
+            {
+                "text": "BORON",
+                "x0": 283.7,
+                "x1": 328.3,
                 "top": 37.452,
                 "doctop": 38879.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 44.66399999999999,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 52
             }
         ],
         "pages": [
@@ -731,13 +1261,27 @@
                 "text": "HELIUM",
                 "x0": 283.0,
                 "x1": 328.9,
+                "top": 37.33200000000011,
+                "doctop": 69767.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 45.93599999999998,
+                "direction": "ltr",
+                "page": 91
+            },
+            {
+                "text": "HELIUM",
+                "x0": 283.0,
+                "x1": 328.9,
                 "top": 37.452,
                 "doctop": 70559.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 45.93599999999998,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 92
             }
         ],
         "pages": [
@@ -751,13 +1295,27 @@
                 "text": "PHOSPHATE ROCK",
                 "x0": 249.3,
                 "x1": 362.7,
+                "top": 37.33200000000011,
+                "doctop": 106199.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 113.39999999999998,
+                "direction": "ltr",
+                "page": 137
+            },
+            {
+                "text": "PHOSPHATE ROCK",
+                "x0": 249.3,
+                "x1": 362.7,
                 "top": 37.452,
                 "doctop": 106991.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 113.39999999999998,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 138
             }
         ],
         "pages": [
@@ -771,13 +1329,27 @@
                 "text": "THALLIUM",
                 "x0": 275.3,
                 "x1": 336.7,
+                "top": 37.33200000000011,
+                "doctop": 142631.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 61.355999999999995,
+                "direction": "ltr",
+                "page": 183
+            },
+            {
+                "text": "THALLIUM",
+                "x0": 275.3,
+                "x1": 336.7,
                 "top": 37.452,
                 "doctop": 143423.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 61.35599999999994,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 184
             }
         ],
         "pages": [
@@ -791,13 +1363,27 @@
                 "text": "BROMINE",
                 "x0": 277.7,
                 "x1": 334.3,
+                "top": 37.33200000000011,
+                "doctop": 39671.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 56.664000000000044,
+                "direction": "ltr",
+                "page": 53
+            },
+            {
+                "text": "BROMINE",
+                "x0": 277.7,
+                "x1": 334.3,
                 "top": 37.452,
                 "doctop": 40463.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 56.664000000000044,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 54
             }
         ],
         "pages": [
@@ -811,13 +1397,27 @@
                 "text": "INDIUM",
                 "x0": 284.6,
                 "x1": 327.3,
+                "top": 37.33200000000011,
+                "doctop": 71351.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 42.63599999999997,
+                "direction": "ltr",
+                "page": 93
+            },
+            {
+                "text": "INDIUM",
+                "x0": 284.6,
+                "x1": 327.3,
                 "top": 37.452,
                 "doctop": 72143.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 42.63599999999997,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 94
             }
         ],
         "pages": [
@@ -831,13 +1431,27 @@
                 "text": "PLATINUM-GROUP METALS",
                 "x0": 224.6,
                 "x1": 387.3,
+                "top": 37.271999999999935,
+                "doctop": 107783.60556,
+                "bottom": 49.271999999999935,
+                "upright": true,
+                "height": 12.0,
+                "width": 162.70000000000002,
+                "direction": "ltr",
+                "page": 139
+            },
+            {
+                "text": "PLATINUM-GROUP METALS",
+                "x0": 224.6,
+                "x1": 387.3,
                 "top": 37.39200000000005,
                 "doctop": 108575.72556,
                 "bottom": 49.39200000000005,
                 "upright": true,
                 "height": 12.0,
                 "width": 162.70000000000002,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 140
             }
         ],
         "pages": [
@@ -851,13 +1465,27 @@
                 "text": "THORIUM",
                 "x0": 278.0,
                 "x1": 334.0,
+                "top": 37.33200000000011,
+                "doctop": 144215.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 56.01599999999996,
+                "direction": "ltr",
+                "page": 185
+            },
+            {
+                "text": "THORIUM",
+                "x0": 278.0,
+                "x1": 334.0,
                 "top": 37.452,
                 "doctop": 145007.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 56.01599999999996,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 186
             }
         ],
         "pages": [
@@ -871,13 +1499,27 @@
                 "text": "CADMIUM",
                 "x0": 277.0,
                 "x1": 335.0,
+                "top": 37.33200000000011,
+                "doctop": 41255.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 57.99599999999998,
+                "direction": "ltr",
+                "page": 55
+            },
+            {
+                "text": "CADMIUM",
+                "x0": 277.0,
+                "x1": 335.0,
                 "top": 37.452,
                 "doctop": 42047.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 57.99599999999998,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 56
             }
         ],
         "pages": [
@@ -891,13 +1533,27 @@
                 "text": "IODINE",
                 "x0": 285.3,
                 "x1": 326.7,
+                "top": 37.33200000000011,
+                "doctop": 72935.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 41.36400000000003,
+                "direction": "ltr",
+                "page": 95
+            },
+            {
+                "text": "IODINE",
+                "x0": 285.3,
+                "x1": 326.7,
                 "top": 37.452,
                 "doctop": 73727.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 41.36400000000003,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 96
             }
         ],
         "pages": [
@@ -911,13 +1567,27 @@
                 "text": "POTASH",
                 "x0": 281.0,
                 "x1": 331.0,
+                "top": 37.33200000000011,
+                "doctop": 109367.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 50.063999999999965,
+                "direction": "ltr",
+                "page": 141
+            },
+            {
+                "text": "POTASH",
+                "x0": 281.0,
+                "x1": 331.0,
                 "top": 37.452,
                 "doctop": 110159.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 50.063999999999965,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 142
             }
         ],
         "pages": [
@@ -931,13 +1601,27 @@
                 "text": "TIN",
                 "x0": 296.3,
                 "x1": 315.7,
+                "top": 37.33200000000011,
+                "doctop": 145799.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 19.403999999999996,
+                "direction": "ltr",
+                "page": 187
+            },
+            {
+                "text": "TIN",
+                "x0": 296.3,
+                "x1": 315.7,
                 "top": 37.452,
                 "doctop": 146591.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 19.403999999999996,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 188
             }
         ],
         "pages": [
@@ -951,13 +1635,27 @@
                 "text": "CEMENT",
                 "x0": 280.7,
                 "x1": 331.3,
+                "top": 37.33200000000011,
+                "doctop": 42839.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 50.591999999999985,
+                "direction": "ltr",
+                "page": 57
+            },
+            {
+                "text": "CEMENT",
+                "x0": 280.7,
+                "x1": 331.3,
                 "top": 37.452,
                 "doctop": 43631.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 50.591999999999985,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 58
             }
         ],
         "pages": [
@@ -968,6 +1666,71 @@
     "Iron and Steel": {
         "title": [
             {
+                "text": "IRON AND STEEL1",
+                "x0": 253.1,
+                "x1": 358.9,
+                "top": 35.820479999999975,
+                "doctop": 74518.15404,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 13.511520000000132,
+                "width": 105.79999999999998,
+                "direction": "ltr",
+                "page": 97
+            },
+            {
+                "text": "IRON AND STEEL",
+                "x0": 255.3,
+                "x1": 356.7,
+                "top": 37.452,
+                "doctop": 75311.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 101.39999999999998,
+                "direction": "ltr",
+                "page": 98
+            },
+            {
+                "text": "IRON AND STEEL SCRAP1",
+                "x0": 230.4,
+                "x1": 381.5,
+                "top": 35.820479999999975,
+                "doctop": 76102.15404,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 13.511520000000132,
+                "width": 151.1,
+                "direction": "ltr",
+                "page": 99
+            },
+            {
+                "text": "IRON AND STEEL SCRAP",
+                "x0": 232.6,
+                "x1": 379.3,
+                "top": 37.452,
+                "doctop": 76895.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 146.70000000000002,
+                "direction": "ltr",
+                "page": 100
+            },
+            {
+                "text": "IRON AND STEEL SLAG",
+                "x0": 237.0,
+                "x1": 375.0,
+                "top": 37.33200000000011,
+                "doctop": 77687.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 138.0,
+                "direction": "ltr",
+                "page": 101
+            },
+            {
                 "text": "IRON AND STEEL SLAG",
                 "x0": 237.0,
                 "x1": 375.0,
@@ -977,7 +1740,8 @@
                 "upright": true,
                 "height": 12.0,
                 "width": 138.0,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 102
             }
         ],
         "pages": [
@@ -995,13 +1759,27 @@
                 "text": "PUMICE AND PUMICITE",
                 "x0": 237.7,
                 "x1": 374.4,
+                "top": 37.33200000000011,
+                "doctop": 110951.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 136.7,
+                "direction": "ltr",
+                "page": 143
+            },
+            {
+                "text": "PUMICE AND PUMICITE",
+                "x0": 237.7,
+                "x1": 374.4,
                 "top": 37.452,
                 "doctop": 111743.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 136.7,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 144
             }
         ],
         "pages": [
@@ -1012,6 +1790,45 @@
     "Titanium": {
         "title": [
             {
+                "text": "TITANIUM AND TITANIUM DIOXIDE1",
+                "x0": 203.8,
+                "x1": 408.1,
+                "top": 35.820479999999975,
+                "doctop": 147382.15404,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 13.511520000000132,
+                "width": 204.3,
+                "direction": "ltr",
+                "page": 189
+            },
+            {
+                "text": "TITANIUM AND TITANIUM DIOXIDE",
+                "x0": 206.0,
+                "x1": 405.9,
+                "top": 37.452,
+                "doctop": 148175.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 199.89999999999998,
+                "direction": "ltr",
+                "page": 190
+            },
+            {
+                "text": "TITANIUM MINERAL CONCENTRATES1",
+                "x0": 194.4,
+                "x1": 417.5,
+                "top": 35.820479999999975,
+                "doctop": 148966.15404,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 13.511520000000132,
+                "width": 223.1,
+                "direction": "ltr",
+                "page": 191
+            },
+            {
                 "text": "TITANIUM MINERAL CONCENTRATES",
                 "x0": 196.6,
                 "x1": 415.3,
@@ -1021,7 +1838,8 @@
                 "upright": true,
                 "height": 12.0,
                 "width": 218.70000000000002,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 192
             }
         ],
         "pages": [
@@ -1037,13 +1855,27 @@
                 "text": "CESIUM",
                 "x0": 282.7,
                 "x1": 329.3,
+                "top": 37.33200000000011,
+                "doctop": 44423.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 46.596000000000004,
+                "direction": "ltr",
+                "page": 59
+            },
+            {
+                "text": "CESIUM",
+                "x0": 282.7,
+                "x1": 329.3,
                 "top": 37.452,
                 "doctop": 45215.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 46.596000000000004,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 60
             }
         ],
         "pages": [
@@ -1054,6 +1886,19 @@
     "Iron Ore": {
         "title": [
             {
+                "text": "IRON ORE1",
+                "x0": 274.1,
+                "x1": 337.9,
+                "top": 35.820479999999975,
+                "doctop": 79270.15404,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 13.511520000000132,
+                "width": 63.799999999999955,
+                "direction": "ltr",
+                "page": 103
+            },
+            {
                 "text": "IRON ORE",
                 "x0": 276.3,
                 "x1": 335.7,
@@ -1063,7 +1908,8 @@
                 "upright": true,
                 "height": 12.0,
                 "width": 59.39999999999998,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 104
             }
         ],
         "pages": [
@@ -1075,6 +1921,19 @@
         "title": [
             {
                 "text": "QUARTZ (HIGH-PURITY AND INDUSTRIAL CULTURED CRYSTAL)",
+                "x0": 119.0,
+                "x1": 493.0,
+                "top": 37.33200000000011,
+                "doctop": 112535.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 374.0,
+                "direction": "ltr",
+                "page": 145
+            },
+            {
+                "text": "QUARTZ (HIGH-PURITY AND INDUSTRIAL CULTURED CRYSTAL)",
                 "x0": 119.3,
                 "x1": 492.5,
                 "top": 37.452,
@@ -1083,7 +1942,8 @@
                 "upright": true,
                 "height": 12.0,
                 "width": 373.2,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 146
             }
         ],
         "pages": [
@@ -1097,13 +1957,27 @@
                 "text": "TUNGSTEN",
                 "x0": 273.0,
                 "x1": 339.0,
+                "top": 37.33200000000011,
+                "doctop": 150551.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 66.024,
+                "direction": "ltr",
+                "page": 193
+            },
+            {
+                "text": "TUNGSTEN",
+                "x0": 273.0,
+                "x1": 339.0,
                 "top": 37.452,
                 "doctop": 151343.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 66.024,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 194
             }
         ],
         "pages": [
@@ -1117,13 +1991,27 @@
                 "text": "CHROMIUM",
                 "x0": 272.3,
                 "x1": 339.6,
+                "top": 37.33200000000011,
+                "doctop": 46007.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 67.29599999999999,
+                "direction": "ltr",
+                "page": 61
+            },
+            {
+                "text": "CHROMIUM",
+                "x0": 272.3,
+                "x1": 339.6,
                 "top": 37.452,
                 "doctop": 46799.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 67.29599999999999,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 62
             }
         ],
         "pages": [
@@ -1137,13 +2025,27 @@
                 "text": "IRON OXIDE PIGMENTS",
                 "x0": 237.7,
                 "x1": 374.4,
+                "top": 37.33200000000011,
+                "doctop": 80855.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 136.7,
+                "direction": "ltr",
+                "page": 105
+            },
+            {
+                "text": "IRON OXIDE PIGMENTS",
+                "x0": 237.7,
+                "x1": 374.4,
                 "top": 37.452,
                 "doctop": 81647.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 136.7,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 106
             }
         ],
         "pages": [
@@ -1154,6 +2056,19 @@
     "Rare Earths": {
         "title": [
             {
+                "text": "RARE EARTHS1",
+                "x0": 260.4,
+                "x1": 351.5,
+                "top": 35.820479999999975,
+                "doctop": 114118.15404,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 13.511520000000132,
+                "width": 91.10000000000002,
+                "direction": "ltr",
+                "page": 147
+            },
+            {
                 "text": "RARE EARTHS",
                 "x0": 262.7,
                 "x1": 349.3,
@@ -1163,7 +2078,8 @@
                 "upright": true,
                 "height": 12.0,
                 "width": 86.60000000000002,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 148
             }
         ],
         "pages": [
@@ -1177,13 +2093,27 @@
                 "text": "VANADIUM",
                 "x0": 273.7,
                 "x1": 338.3,
+                "top": 37.33200000000011,
+                "doctop": 152135.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 64.656,
+                "direction": "ltr",
+                "page": 195
+            },
+            {
+                "text": "VANADIUM",
+                "x0": 273.7,
+                "x1": 338.3,
                 "top": 37.452,
                 "doctop": 152927.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 64.656,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 196
             }
         ],
         "pages": [
@@ -1197,13 +2127,27 @@
                 "text": "CLAYS",
                 "x0": 285.7,
                 "x1": 326.3,
+                "top": 37.33200000000011,
+                "doctop": 47591.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 40.644000000000005,
+                "direction": "ltr",
+                "page": 63
+            },
+            {
+                "text": "CLAYS",
+                "x0": 285.7,
+                "x1": 326.3,
                 "top": 37.452,
                 "doctop": 48383.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 40.644000000000005,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 64
             }
         ],
         "pages": [
@@ -1217,13 +2161,27 @@
                 "text": "KYANITE AND RELATED MINERALS",
                 "x0": 202.0,
                 "x1": 409.9,
+                "top": 37.33200000000011,
+                "doctop": 82439.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 207.89999999999998,
+                "direction": "ltr",
+                "page": 107
+            },
+            {
+                "text": "KYANITE AND RELATED MINERALS",
+                "x0": 202.0,
+                "x1": 409.9,
                 "top": 37.452,
                 "doctop": 83231.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 207.89999999999998,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 108
             }
         ],
         "pages": [
@@ -1237,13 +2195,27 @@
                 "text": "RHENIUM",
                 "x0": 278.0,
                 "x1": 333.9,
+                "top": 37.33200000000011,
+                "doctop": 115703.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 55.95600000000002,
+                "direction": "ltr",
+                "page": 149
+            },
+            {
+                "text": "RHENIUM",
+                "x0": 278.0,
+                "x1": 333.9,
                 "top": 37.452,
                 "doctop": 116495.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 55.95600000000002,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 150
             }
         ],
         "pages": [
@@ -1257,13 +2229,27 @@
                 "text": "VERMICULITE",
                 "x0": 265.3,
                 "x1": 346.7,
+                "top": 37.33200000000011,
+                "doctop": 153719.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 81.38400000000001,
+                "direction": "ltr",
+                "page": 197
+            },
+            {
+                "text": "VERMICULITE",
+                "x0": 265.3,
+                "x1": 346.7,
                 "top": 37.452,
                 "doctop": 154511.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 81.38400000000001,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 198
             }
         ],
         "pages": [
@@ -1277,13 +2263,27 @@
                 "text": "COBALT",
                 "x0": 281.0,
                 "x1": 331.0,
+                "top": 37.33200000000011,
+                "doctop": 49175.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 49.99200000000002,
+                "direction": "ltr",
+                "page": 65
+            },
+            {
+                "text": "COBALT",
+                "x0": 281.0,
+                "x1": 331.0,
                 "top": 37.452,
                 "doctop": 49967.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 49.99200000000002,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 66
             }
         ],
         "pages": [
@@ -1297,13 +2297,27 @@
                 "text": "LEAD",
                 "x0": 289.7,
                 "x1": 322.3,
+                "top": 37.33200000000011,
+                "doctop": 84023.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 32.66399999999999,
+                "direction": "ltr",
+                "page": 109
+            },
+            {
+                "text": "LEAD",
+                "x0": 289.7,
+                "x1": 322.3,
                 "top": 37.452,
                 "doctop": 84815.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 32.66399999999999,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 110
             }
         ],
         "pages": [
@@ -1317,13 +2331,27 @@
                 "text": "RUBIDIUM",
                 "x0": 276.0,
                 "x1": 335.9,
+                "top": 37.33200000000011,
+                "doctop": 117287.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 59.916,
+                "direction": "ltr",
+                "page": 151
+            },
+            {
+                "text": "RUBIDIUM",
+                "x0": 276.0,
+                "x1": 335.9,
                 "top": 37.452,
                 "doctop": 118079.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 59.916,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 152
             }
         ],
         "pages": [
@@ -1337,13 +2365,27 @@
                 "text": "WOLLASTONITE",
                 "x0": 258.0,
                 "x1": 354.1,
+                "top": 37.33200000000011,
+                "doctop": 155303.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 96.08519999999999,
+                "direction": "ltr",
+                "page": 199
+            },
+            {
+                "text": "WOLLASTONITE",
+                "x0": 258.0,
+                "x1": 354.1,
                 "top": 37.452,
                 "doctop": 156095.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 96.08519999999999,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 200
             }
         ],
         "pages": [
@@ -1357,13 +2399,27 @@
                 "text": "COPPER",
                 "x0": 280.6,
                 "x1": 331.3,
+                "top": 37.33200000000011,
+                "doctop": 50759.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 50.66399999999999,
+                "direction": "ltr",
+                "page": 67
+            },
+            {
+                "text": "COPPER",
+                "x0": 280.6,
+                "x1": 331.3,
                 "top": 37.452,
                 "doctop": 51551.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 50.66399999999999,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 68
             }
         ],
         "pages": [
@@ -1374,6 +2430,19 @@
     "Lime": {
         "title": [
             {
+                "text": "LIME1",
+                "x0": 289.4,
+                "x1": 322.6,
+                "top": 35.820479999999975,
+                "doctop": 85606.15404,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 13.511520000000132,
+                "width": 33.11687999999998,
+                "direction": "ltr",
+                "page": 111
+            },
+            {
                 "text": "LIME",
                 "x0": 291.7,
                 "x1": 320.4,
@@ -1383,7 +2452,8 @@
                 "upright": true,
                 "height": 12.0,
                 "width": 28.704000000000008,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 112
             }
         ],
         "pages": [
@@ -1397,13 +2467,27 @@
                 "text": "SALT",
                 "x0": 290.3,
                 "x1": 321.7,
+                "top": 37.33200000000011,
+                "doctop": 118871.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 31.331999999999994,
+                "direction": "ltr",
+                "page": 153
+            },
+            {
+                "text": "SALT",
+                "x0": 290.3,
+                "x1": 321.7,
                 "top": 37.452,
                 "doctop": 119663.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 31.331999999999994,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 154
             }
         ],
         "pages": [
@@ -1414,6 +2498,19 @@
     "Yttrium": {
         "title": [
             {
+                "text": "YTTRIUM1",
+                "x0": 277.1,
+                "x1": 334.9,
+                "top": 35.820479999999975,
+                "doctop": 156886.15404,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 13.511520000000132,
+                "width": 57.83688000000001,
+                "direction": "ltr",
+                "page": 201
+            },
+            {
                 "text": "YTTRIUM",
                 "x0": 279.3,
                 "x1": 332.7,
@@ -1423,7 +2520,8 @@
                 "upright": true,
                 "height": 12.0,
                 "width": 53.375999999999976,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 202
             }
         ],
         "pages": [
@@ -1434,6 +2532,19 @@
     "Diamond": {
         "title": [
             {
+                "text": "DIAMOND (INDUSTRIAL)1",
+                "x0": 233.1,
+                "x1": 378.9,
+                "top": 35.820479999999975,
+                "doctop": 52342.15404,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 13.511520000000132,
+                "width": 145.79999999999998,
+                "direction": "ltr",
+                "page": 69
+            },
+            {
                 "text": "DIAMOND (INDUSTRIAL)",
                 "x0": 235.3,
                 "x1": 376.7,
@@ -1443,7 +2554,8 @@
                 "upright": true,
                 "height": 12.0,
                 "width": 141.39999999999998,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 70
             }
         ],
         "pages": [
@@ -1457,13 +2569,27 @@
                 "text": "LITHIUM",
                 "x0": 281.6,
                 "x1": 330.3,
+                "top": 37.33200000000011,
+                "doctop": 87191.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 48.69599999999997,
+                "direction": "ltr",
+                "page": 113
+            },
+            {
+                "text": "LITHIUM",
+                "x0": 281.6,
+                "x1": 330.3,
                 "top": 37.452,
                 "doctop": 87983.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 48.69599999999997,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 114
             }
         ],
         "pages": [
@@ -1474,6 +2600,45 @@
     "Sand and Gravel": {
         "title": [
             {
+                "text": "SAND AND GRAVEL (CONSTRUCTION)1",
+                "x0": 191.5,
+                "x1": 420.5,
+                "top": 35.820479999999975,
+                "doctop": 120454.15404,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 13.511520000000132,
+                "width": 229.0,
+                "direction": "ltr",
+                "page": 155
+            },
+            {
+                "text": "SAND AND GRAVEL (CONSTRUCTION)",
+                "x0": 193.7,
+                "x1": 418.3,
+                "top": 37.452,
+                "doctop": 121247.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 224.60000000000002,
+                "direction": "ltr",
+                "page": 156
+            },
+            {
+                "text": "SAND AND GRAVEL (INDUSTRIAL)1",
+                "x0": 203.5,
+                "x1": 408.6,
+                "top": 35.820479999999975,
+                "doctop": 122038.15404,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 13.511520000000132,
+                "width": 205.10000000000002,
+                "direction": "ltr",
+                "page": 157
+            },
+            {
                 "text": "SAND AND GRAVEL (INDUSTRIAL)",
                 "x0": 205.7,
                 "x1": 406.4,
@@ -1483,7 +2648,8 @@
                 "upright": true,
                 "height": 12.0,
                 "width": 200.7,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 158
             }
         ],
         "pages": [
@@ -1499,13 +2665,27 @@
                 "text": "ZEOLITES (NATURAL)",
                 "x0": 242.0,
                 "x1": 369.9,
+                "top": 37.33200000000011,
+                "doctop": 158471.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 127.89999999999998,
+                "direction": "ltr",
+                "page": 203
+            },
+            {
+                "text": "ZEOLITES (NATURAL)",
+                "x0": 242.0,
+                "x1": 369.9,
                 "top": 37.452,
                 "doctop": 159263.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 127.89999999999998,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 204
             }
         ],
         "pages": [
@@ -1519,13 +2699,27 @@
                 "text": "DIATOMITE",
                 "x0": 273.0,
                 "x1": 339.0,
+                "top": 37.33200000000011,
+                "doctop": 53927.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 65.964,
+                "direction": "ltr",
+                "page": 71
+            },
+            {
+                "text": "DIATOMITE",
+                "x0": 273.0,
+                "x1": 339.0,
                 "top": 37.452,
                 "doctop": 54719.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 65.964,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 72
             }
         ],
         "pages": [
@@ -1536,6 +2730,45 @@
     "Magnesium": {
         "title": [
             {
+                "text": "MAGNESIUM COMPOUNDS1",
+                "x0": 225.1,
+                "x1": 386.8,
+                "top": 35.820479999999975,
+                "doctop": 88774.15404,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 13.511520000000132,
+                "width": 161.70000000000002,
+                "direction": "ltr",
+                "page": 115
+            },
+            {
+                "text": "MAGNESIUM COMPOUNDS",
+                "x0": 227.3,
+                "x1": 384.6,
+                "top": 37.452,
+                "doctop": 89567.78556,
+                "bottom": 49.452,
+                "upright": true,
+                "height": 12.0,
+                "width": 157.3,
+                "direction": "ltr",
+                "page": 116
+            },
+            {
+                "text": "MAGNESIUM METAL1",
+                "x0": 244.1,
+                "x1": 367.9,
+                "top": 35.820479999999975,
+                "doctop": 90358.15404,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 13.511520000000132,
+                "width": 123.79999999999998,
+                "direction": "ltr",
+                "page": 117
+            },
+            {
                 "text": "MAGNESIUM METAL",
                 "x0": 246.4,
                 "x1": 365.7,
@@ -1545,7 +2778,8 @@
                 "upright": true,
                 "height": 12.0,
                 "width": 119.29999999999998,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 118
             }
         ],
         "pages": [
@@ -1558,6 +2792,19 @@
     "Scandium": {
         "title": [
             {
+                "text": "SCANDIUM1",
+                "x0": 271.4,
+                "x1": 340.6,
+                "top": 35.820479999999975,
+                "doctop": 123622.15404,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 13.511520000000132,
+                "width": 69.11687999999998,
+                "direction": "ltr",
+                "page": 159
+            },
+            {
                 "text": "SCANDIUM",
                 "x0": 273.7,
                 "x1": 338.3,
@@ -1567,7 +2814,8 @@
                 "upright": true,
                 "height": 12.0,
                 "width": 64.656,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 160
             }
         ],
         "pages": [
@@ -1581,13 +2829,27 @@
                 "text": "ZINC",
                 "x0": 292.0,
                 "x1": 319.9,
+                "top": 37.33200000000011,
+                "doctop": 160055.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 27.98399999999998,
+                "direction": "ltr",
+                "page": 205
+            },
+            {
+                "text": "ZINC",
+                "x0": 292.0,
+                "x1": 319.9,
                 "top": 37.452,
                 "doctop": 160847.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 27.98399999999998,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 206
             }
         ],
         "pages": [
@@ -1601,13 +2863,27 @@
                 "text": "FELDSPAR AND NEPHELINE SYENITE",
                 "x0": 195.7,
                 "x1": 416.4,
+                "top": 37.33200000000011,
+                "doctop": 55511.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 220.7,
+                "direction": "ltr",
+                "page": 73
+            },
+            {
+                "text": "FELDSPAR AND NEPHELINE SYENITE",
+                "x0": 195.7,
+                "x1": 416.4,
                 "top": 37.452,
                 "doctop": 56303.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 220.7,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 74
             }
         ],
         "pages": [
@@ -1621,13 +2897,27 @@
                 "text": "MANGANESE",
                 "x0": 267.0,
                 "x1": 345.0,
+                "top": 37.33200000000011,
+                "doctop": 91943.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 77.96400000000006,
+                "direction": "ltr",
+                "page": 119
+            },
+            {
+                "text": "MANGANESE",
+                "x0": 267.0,
+                "x1": 345.0,
                 "top": 37.452,
                 "doctop": 92735.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 77.96400000000006,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 120
             }
         ],
         "pages": [
@@ -1641,13 +2931,27 @@
                 "text": "SELENIUM",
                 "x0": 275.0,
                 "x1": 337.0,
+                "top": 37.33200000000011,
+                "doctop": 125207.66556,
+                "bottom": 49.33200000000011,
+                "upright": true,
+                "height": 12.0,
+                "width": 62.01599999999996,
+                "direction": "ltr",
+                "page": 161
+            },
+            {
+                "text": "SELENIUM",
+                "x0": 275.0,
+                "x1": 337.0,
                 "top": 37.452,
                 "doctop": 125999.78556,
                 "bottom": 49.452,
                 "upright": true,
                 "height": 12.0,
                 "width": 62.01599999999996,
-                "direction": "ltr"
+                "direction": "ltr",
+                "page": 162
             }
         ],
         "pages": [
@@ -1656,7 +2960,7 @@
         ]
     },
     "Zirconium": {
-        "title": "",
+        "title": [],
         "pages": []
     }
 }
