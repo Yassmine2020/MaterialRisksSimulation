@@ -256,6 +256,90 @@ def merge_list_of_dataframes(dfs):
 
     return merged_df
 
+def table_to_df(list_of_table_df):
+    merged_df_list = []
+    for df in list_of_table_df:
+        comb_table_df = complexe_word(list_of_table_df[0], 0)
+        groups = []
+
+        # Iterate through each combination of rows to form groups
+        for i, row1 in comb_table_df.iterrows():
+            added_to_any_group = False
+            for group in groups:
+                if any(belongs_to_same_group(row1, comb_table_df.iloc[j]) for j in group):
+                    group.append(i)
+                    added_to_any_group = True
+            if not added_to_any_group:
+                groups.append([i])
+
+        # Add group labels to the dataframe
+        comb_table_df['group'] = -1
+        group_label = 0
+        for group in groups:
+            for index in group:
+                if comb_table_df.at[index, 'group'] == -1:  # Assign a new group label if not already assigned
+                    comb_table_df.at[index, 'group'] = group_label
+            group_label += 1
+        
+        unique_groups = comb_table_df['group'].unique()
+
+        dfs = []
+
+        # Loop over the unique values and create a DataFrame for each group
+        for group in unique_groups:
+            df_group = comb_table_df[comb_table_df['group'] == group]
+            dfs.append(df_group)
+        
+        group_counter = 1
+        to_merge = []
+
+        for df in dfs[:]:
+            # Check if there are any duplicated 'bottom' values
+            if df['bottom'].duplicated().any():
+                unique_x1 = df['x1'].unique()
+                for x1 in unique_x1:
+                    df.loc[df['x1'] == x1, 'TEST'] = group_counter
+                    group_counter += 1
+            else:
+                to_merge.append(df)
+
+        dfs = [df for df in dfs if id(df) not in [id(d) for d in to_merge]]
+        new_dfs = []
+
+        ## act here
+        for df in dfs[:]:
+            unique_tests = df['TEST'].dropna().unique()  # Get unique TEST values, ignoring NaNs
+            for test_value in unique_tests:
+                temp_df = df[df['TEST'] == test_value].copy()
+                if len(temp_df) > 1:  # Check if this subset has repeated values
+                    temp_df = temp_df.drop(columns=['TEST'])  
+                    new_dfs.append(temp_df)
+                    df.drop(temp_df.index, inplace=True) 
+
+            if not df.empty:
+                new_dfs = [pd.concat([new_df, df], ignore_index=True) for new_df in new_dfs]
+
+        dfs =  to_merge + new_dfs  
+
+        df_min_x0_tuples = []
+
+        # Loop over the unique values and create a DataFrame for each group with its corresponding min_x0
+        for df in dfs:
+        # print(df)
+            min_x0 = df['x0'].min()
+            df_min_x0_tuples.append((df, min_x0))
+
+            # Sort the list of tuples by min_x0
+        df_min_x0_tuples_sorted = sorted(df_min_x0_tuples, key=lambda x: x[1])
+
+        # Extract the sorted DataFrames into a list
+        dfs = [df_tuple[0] for df_tuple in df_min_x0_tuples_sorted]
+
+        merged_df = merge_list_of_dataframes(dfs)
+
+        merged_df_list.append(merged_df)
+    return merged_df_list
+
 def extract_table(selected_p, content):
     df = content
     page_text_df = content
