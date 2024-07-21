@@ -160,3 +160,50 @@ def most_repeated_value(lst):
     # Find the most common element
     most_common_element = counter.most_common(1)[0][0]
     return most_common_element
+
+def belongs_to_same_group(row1, row2):
+    # Check if intervals [x0, x1] of row1 and row2 overlap
+    interval1_start, interval1_end = min(row1['x0'], row1['x1']), max(row1['x0'], row1['x1'])
+    interval2_start, interval2_end = min(row2['x0'], row2['x1']), max(row2['x0'], row2['x1'])
+    
+    intervals_overlap = not (interval1_end < interval2_start or interval2_end < interval1_start)
+    condition = intervals_overlap and row1['bottom'] != row2['bottom']
+    return condition
+
+# Concatenate all DataFrames in the to_merge list
+def custom_outer_merge(df1, df2, iteration):
+    merged = []
+    used_indices_df2 = set()
+    for i, row1 in df1.iterrows():
+        match = False
+        for j, row2 in df2.iterrows():
+            if abs(row1['bottom'] - row2['bottom']) <= 10 and j not in used_indices_df2:
+                combined_row = row1.to_dict()
+                combined_row[f'text_{iteration}'] = row2['text']
+                merged.append(combined_row)
+                used_indices_df2.add(j)
+                match = True
+                break
+        if not match:
+            combined_row = row1.to_dict()
+            combined_row[f'text_{iteration}'] = None
+            merged.append(combined_row)
+    
+    for j, row2 in df2.iterrows():
+        if j not in used_indices_df2:
+            combined_row = {col: None for col in df1.columns if col.startswith('text')}
+            combined_row['bottom'] = row2['bottom']
+            combined_row[f'text_{iteration}'] = row2['text']
+            merged.append(combined_row)
+    
+    return pd.DataFrame(merged)
+
+def merge_list_of_dataframes(dfs):
+    if not dfs:
+        return pd.DataFrame()
+
+    merged_df = dfs[0][['text', 'bottom']]
+    for i in range(1, len(dfs)):
+        merged_df = custom_outer_merge(merged_df, dfs[i][['text', 'bottom']], i)
+
+    return merged_df

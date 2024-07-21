@@ -4,6 +4,11 @@ import json
 import re
 from fuzzywuzzy import fuzz
 import fitz
+from decimal import Decimal, getcontext
+from collections import Counter
+import numpy as np
+from sklearn.preprocessing import MinMaxScaler
+
 
 def extract_word_positions(pdf_path, i):
     '''
@@ -38,25 +43,25 @@ def extract_cols(words_df, coordinate_param, round_param):
 
     words_df2 = words_df.copy()
         
+    # filter alignment in lines starts
     words_df2 = words_df2[words_df2['x0'] > 50]
-    words_df2['x0'] = round(words_df2['x0'], round_param)
+
+    # round to detect alignment
+    words_df2[coordinate_param] = round(words_df2[coordinate_param], round_param)
     
-    if coordinate_param == 'x0':
-        # based on x0:
-        grouped = words_df2.groupby('x0')
+    grouped = words_df2.groupby(coordinate_param)
 
-    elif coordinate_param == 'x1':
-        grouped = words_df2.groupby('x1')
-
-        # Initialize lists to store the results
-    min_bottoms = []
+    # Initialize lists to store the results
+    min_bottoms = []    
     max_tops = []
     group_names = []
 
     # Iterate over each group
     for name, group in grouped:
-        if len(group) > 3:
-            # Calculate the min of 'bottom' and max of 'top' for the group
+        # Filter group with at least n_lines
+        n_lines = 4
+        if len(group) >= n_lines:
+            # Calculate the max of 'bottom' and min of 'top' for the group
             min_bottom = group['bottom'].max()
             max_top = group['top'].min()
 
@@ -65,7 +70,7 @@ def extract_cols(words_df, coordinate_param, round_param):
             min_bottoms.append(min_bottom)
             max_tops.append(max_top)
 
-    # Create a new DataFrame with the results
+
     result_df = pd.DataFrame({
         coordinate_param: group_names,
         'min_bottom': min_bottoms,
@@ -120,6 +125,10 @@ def complexe_word(words_df, round_param):
 
     merged_df = pd.DataFrame(merged_words)
     return merged_df
+
+def get_duplicated_values(input_list):
+    count = Counter(input_list)
+    return [item for item, freq in count.items() if freq > 1]
 
 def extract_largest_text(pdf_path, page):
     '''extract the titles from pages 34 to 205 
@@ -193,6 +202,170 @@ def extract_positions_for_elements(pdf_path, material_pages):   ## to change!!! 
             content[material]['pages_content'].append(page_content)
           
   return content
+
+def most_repeated_value(lst):
+    # Use Counter to count the frequency of each element
+    counter = Counter(lst)
+    # Find the most common element
+    most_common_element = counter.most_common(1)[0][0]
+    return most_common_element
+
+def belongs_to_same_group(row1, row2):
+    # Check if intervals [x0, x1] of row1 and row2 overlap
+    interval1_start, interval1_end = min(row1['x0'], row1['x1']), max(row1['x0'], row1['x1'])
+    interval2_start, interval2_end = min(row2['x0'], row2['x1']), max(row2['x0'], row2['x1'])
+    
+    intervals_overlap = not (interval1_end < interval2_start or interval2_end < interval1_start)
+    condition = intervals_overlap and row1['bottom'] != row2['bottom']
+    return condition
+
+def custom_outer_merge(df1, df2, iteration):
+    merged = []
+    used_indices_df2 = set()
+    for i, row1 in df1.iterrows():
+        match = False
+        for j, row2 in df2.iterrows():
+            if abs(row1['bottom'] - row2['bottom']) <= 20 and j not in used_indices_df2:
+                combined_row = row1.to_dict()
+                combined_row[f'text_{iteration}'] = row2['text']
+                merged.append(combined_row)
+                used_indices_df2.add(j)
+                match = True
+                break
+        if not match:
+            combined_row = row1.to_dict()
+            combined_row[f'text_{iteration}'] = None
+            merged.append(combined_row)
+    
+    for j, row2 in df2.iterrows():
+        if j not in used_indices_df2:
+            combined_row = {col: None for col in df1.columns if col.startswith('text')}
+            combined_row['bottom'] = row2['bottom']
+            combined_row[f'text_{iteration}'] = row2['text']
+            merged.append(combined_row)
+    
+    return pd.DataFrame(merged)
+
+def merge_list_of_dataframes(dfs):
+    if not dfs:
+        return pd.DataFrame()
+
+    merged_df = dfs[0][['text', 'bottom']]
+    for i in range(1, len(dfs)):
+        merged_df = custom_outer_merge(merged_df, dfs[i][['text', 'bottom']], i)
+
+    return merged_df
+
+def extract_table(selected_p, content):
+    df = content
+    page_text_df = content
+
+    bounding_box = extract_cols(page_text_df, 'x1', 2)
+
+        # Compute margin_top
+    # refering to previous word (in reading order)
+    df['margin_top'] = df['bottom'] - df['top'].shift(1)
+
+    # Fill the last value of margin_top with 0 or NaN as it has no preceding word
+    df['margin_top'] = df['margin_top'].fillna(0)
+
+    # set margin_top to 0 words in same line
+    df['margin_top'] = df.apply(lambda row: 0 if row['top'] == df['top'].shift(
+        1).loc[row.name] else row['margin_top'], axis=1)
+
+    gap_y_df = df[df['margin_top'] > 27]
+    # Perspective : change threshold using statistic (example : quantile 75 of margin_top)
+
+    # Initialize the MinMaxScaler
+    scaler = MinMaxScaler()
+
+    combined_data = np.concatenate(
+        (bounding_box[['min_bottom']], bounding_box[['max_top']]), axis=0)
+
+    # Initialize the MinMaxScaler
+    scaler = MinMaxScaler()
+
+    # Fit and transform the combined data
+    normalized_combined_data = scaler.fit_transform(combined_data)
+
+    # Split the combined data back into two columns
+    split_index = len(bounding_box)
+    normalized_min_bottom = normalized_combined_data[:split_index]
+    normalized_max_top = normalized_combined_data[split_index:]
+
+    # Assign the scaled values back to the DataFrame
+    bounding_box['min_bottom_normalized'] = np.round(normalized_min_bottom, 0)
+    bounding_box['max_top_normalized'] = np.round(normalized_max_top, 0)
+
+    # Group by 'min_bottom_normalized' and 'max_top_normalized'
+    grouped = bounding_box.groupby(['min_bottom_normalized'])
+
+    # Convert each group into a separate dataframe and store them in a list
+    list_of_dfs = [group.reset_index(drop=True) for _, group in grouped]
+
+    list_of_top_bottom_bbox = []
+    for _, group in grouped:
+        if len(group) > 1:
+            list_of_top_bottom_bbox.append({
+                'bbox_top': float(group['max_top'].min()),
+                'bbox_bottom': float(group['min_bottom'].max())
+            })
+            
+    list_of_bbox = []
+    list_of_table_df = []
+    for top_bottom_bbox in list_of_top_bottom_bbox:
+        bbox_top, bbox_bottom = top_bottom_bbox['bbox_top'], top_bottom_bbox['bbox_bottom']
+
+        # Find the nearest 'top' and 'bottom' values in the dataframe
+        gap_y_df['top_diff'] = np.abs(gap_y_df['top'] - bbox_top)
+        gap_y_df['bottom_diff'] = np.abs(gap_y_df['bottom'] - bbox_bottom)
+        gap_y_df['total_diff'] = gap_y_df['top_diff'] + gap_y_df['bottom_diff']
+
+        # Get the row with the minimum total difference
+        nearest_row = gap_y_df.loc[gap_y_df['total_diff'].idxmin()]
+        nearest_row['top']
+
+        # Calculate the differences between bbox_top and the 'top' values in the dataframe
+        gap_y_df['top_diff'] = np.abs(gap_y_df['top'] - bbox_top)
+
+        # Find the row with the minimum 'top_diff' and maximum 'bottom_diff'
+        nearest_top_row = gap_y_df.loc[gap_y_df['top_diff'].idxmin()]
+
+        # Filter the dataframe to only include rows with the nearest 'top' and 'bottom' values
+        nearest_top_df = gap_y_df[gap_y_df['top'] == nearest_top_row['top']]
+        bbox_top_final, bbox_bottom_final = nearest_top_df['top'], bbox_bottom
+
+        padding = 5
+
+        bbox_top_final, bbox_bottom_final = float(
+            nearest_top_df['top']), float(bbox_bottom)
+
+        table_df = page_text_df[(page_text_df['top'] >= bbox_top_final - padding)
+                                & (page_text_df['bottom'] <= bbox_bottom_final + padding)]
+
+        bbox_start, bbox_end = float(
+            table_df['x0'].min()), float(table_df['x1'].max())
+
+        list_of_bbox.append({
+            'bbox_top': bbox_top_final,
+            'bbox_bottom': bbox_bottom_final,
+            'bbox_start': bbox_start,
+            'bbox_end': bbox_end
+        })
+        list_of_table_df.append(table_df)
+        
+    with pdfplumber.open("mcs2024.pdf") as pdf:
+        im = pdf.pages[selected_p].to_image(resolution=50)
+
+    # Draw a rectangle using the bounding box coordinates
+    border_color = "blue"
+
+    for bbox in list_of_bbox:
+        # Draw a rectangle using the bounding box coordinates with specified colors
+        im.draw_rect([bbox['bbox_start'] - padding, bbox['bbox_top'] - padding, bbox['bbox_end'] + padding, bbox['bbox_bottom'] + padding],
+                    stroke=border_color, stroke_width=1)
+
+    return list_of_table_df, im
 
 def extract_text_between_delimiters(df, pdf_path, page, bottom=82):
     '''
