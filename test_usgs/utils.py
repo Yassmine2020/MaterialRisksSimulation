@@ -325,10 +325,10 @@ def extract_table(selected_p, content):
         for bbox in list_of_bbox:
             im.draw_rect([bbox['bbox_start'] - padding, bbox['bbox_top'] - padding, bbox['bbox_end'] + padding, bbox['bbox_bottom'] + padding], stroke=border_color, stroke_width=1)
 
-        return list_of_table_df, im
+        return list_of_table_df, list_of_bbox, selected_p, im
     else:
         print("Dataframe is either not defined or empty. Scaling not applied.")
-        return [], None
+        return [], [], selected_p, None
 
 def table_to_df(list_of_table_df):
     merged_df_list = []
@@ -595,45 +595,102 @@ def extract_text_between_delimiters(df, pdf_path, page, bottom=82):
     document.save(output_pdf_path)
     document.close()
 
-def draw_rectangles_for_materials(input_pdf_path, output_pdf_path, scraping_base):
+# def draw_rectangles_for_materials(input_pdf_path, output_pdf_path, scraping_base):
+#     # Open the existing PDF
+#     document = fitz.open(input_pdf_path)
+    
+#     # Iterate over each material
+#     for material, data in scraping_base.items():
+#         material_title_df = pd.DataFrame(data['material_title'])
+#         pages = data['pages_num']
+#         pages_content_df = pd.concat([pd.DataFrame(page_content) for page_content in data['pages_content']])
+#         remarks_df = pd.DataFrame(data['remarks'])
+        
+#         # Iterate over each specified page for the material
+#         for page_num in pages:
+#             page = document[page_num - 1]  # Pages are 0-indexed in PyMuPDF
+            
+#             # Draw rectangles over titles
+
+#             # Iterate over each title entry
+#             for index, row in material_title_df.iterrows():
+#                 page_n = row['page']  # Get the page number for this title
+#                 page = document[page_n]  # Pages are 0-indexed in PyMuPDF
+                
+#                 # Define the coordinates for the rectangle
+#                 rect = fitz.Rect(row['x0'], row['top'], row['x1'], row['bottom'])
+                
+#                 # Draw the rectangle on the page
+#                 page.draw_rect(rect, width=1, color=(1, 0, 0))
+            
+#             # Draw rectangles over remarks on the correct page
+#             page_remarks = remarks_df[remarks_df['page'] == page_num]
+#             page = document[page_num - 1]
+#             for index, row in page_remarks.iterrows():
+#                 # Define the coordinates for the rectangle
+#                 rect = fitz.Rect(row['x0'], row['top'], row['x1'], row['bottom'])
+                
+#                 # Draw the rectangle on the page
+#                 page.draw_rect(rect, width=1, color=(0, 1, 0))  # Green rectangle for remarks, width=1
+
+#             page = document[page_num - 1]
+#             # Draw rectangle over each table
+#             for table, bbox, table_page in data['tables']:
+#                 if table_page == page_num - 1:  # Only draw if the table is on the current page
+#                     rect = fitz.Rect(bbox['bbox_start'], bbox['bbox_top'], bbox['bbox_end'], bbox['bbox_bottom'])
+#                     page.draw_rect(rect, width=1, color=(0, 0, 1))  # Blue rectangle for tables
+    
+#     # Save the modified PDF to a new file
+#     document.save(output_pdf_path)
+#     document.close()
+
+def draw_rectangles_for_materials(input_pdf_path, output_pdf_path, scraping_base, padding=2):
     # Open the existing PDF
     document = fitz.open(input_pdf_path)
-    
+
+    def draw_rectangle(page, x0, top, x1, bottom, color, fill_color=None):
+        """Helper function to draw a rectangle on the given page with padding."""
+        rect = fitz.Rect(x0 - padding, top - padding, x1 + padding, bottom + padding)
+        if fill_color:
+            page.draw_rect(rect, color=color, fill=fill_color, overlay=False)
+        else:
+            page.draw_rect(rect, color=color, overlay=False)
+
+    def process_material_titles(material_title_df, document):
+        """Process and draw rectangles over material titles."""
+        for _, row in material_title_df.iterrows():
+            page_num = row['page']
+            page = document[page_num - 1]  # Pages are 0-indexed in PyMuPDF
+            draw_rectangle(page, row['x0'], row['top'], row['x1'], row['bottom'], color=(1, 0, 0), fill_color=(1, 0, 0, 0.))
+
+    def process_remarks(remarks_df, page_num, document):
+        """Process and draw rectangles over remarks."""
+        page_remarks = remarks_df[remarks_df['page'] == page_num]
+        page = document[page_num - 1]
+        for _, row in page_remarks.iterrows():
+            draw_rectangle(page, row['x0'], row['top'], row['x1'], row['bottom'], color=(0, 1, 0), fill_color=(0, 1, 0, 0.1))
+
+    def process_tables(tables, page_num, document):
+        """Process and draw rectangles over tables."""
+        page = document[page_num - 1]
+        for table, bbox, table_page in tables:
+            if table_page == page_num - 1:
+                draw_rectangle(page, bbox['bbox_start'], bbox['bbox_top'], bbox['bbox_end'], bbox['bbox_bottom'], color=(0, 0, 1), fill_color=(0, 0, 1, 0.1))
+
     # Iterate over each material
     for material, data in scraping_base.items():
         material_title_df = pd.DataFrame(data['material_title'])
         pages = data['pages_num']
         pages_content_df = pd.concat([pd.DataFrame(page_content) for page_content in data['pages_content']])
         remarks_df = pd.DataFrame(data['remarks'])
-        
+
         # Iterate over each specified page for the material
         for page_num in pages:
-            page = document[page_num - 1]  # Pages are 0-indexed in PyMuPDF
-            
-            # Draw rectangles over titles
-
-            # Iterate over each title entry
-            for index, row in material_title_df.iterrows():
-                page_num = row['page']  # Get the page number for this title
-                page = document[page_num]  # Pages are 0-indexed in PyMuPDF
-                
-                # Define the coordinates for the rectangle
-                rect = fitz.Rect(row['x0'], row['top'], row['x1'], row['bottom'])
-                
-                # Draw the rectangle on the page
-                page.draw_rect(rect, width=1, color=(1, 0, 0))
-            
-            # Draw rectangles over remarks on the correct page
-            page_remarks = remarks_df[remarks_df['page'] == page_num]
-            page = document[page_num - 1]
-            for index, row in page_remarks.iterrows():
-                # Define the coordinates for the rectangle
-                rect = fitz.Rect(row['x0'], row['top'], row['x1'], row['bottom'])
-                
-                # Draw the rectangle on the page
-                page.draw_rect(rect, width=1, color=(0, 1, 0))  # Green rectangle for remarks, width=1
-
-    # Save the modified PDF to a new file
+            process_material_titles(material_title_df, document)
+            process_remarks(remarks_df, page_num, document)
+            process_tables(data['tables'], page_num, document)
+    
+    # Save the modified PDF
     document.save(output_pdf_path)
     document.close()
 
