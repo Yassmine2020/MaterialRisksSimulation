@@ -225,7 +225,7 @@ def custom_outer_merge(df1, df2, iteration):
     for i, row1 in df1.iterrows():
         match = False
         for j, row2 in df2.iterrows():
-            if abs(row1['bottom'] - row2['bottom']) <= 20 and j not in used_indices_df2:
+            if abs(row1['bottom'] - row2['bottom']) <= 5 and j not in used_indices_df2:
                 combined_row = row1.to_dict()
                 combined_row[f'text_{iteration}'] = row2['text']
                 merged.append(combined_row)
@@ -352,43 +352,71 @@ def table_to_df(list_of_table_df):
                 if comb_table_df.at[index, 'group'] == -1:
                     comb_table_df.at[index, 'group'] = group_label
             group_label += 1
+#
+    dff = comb_table_df[comb_table_df['group'] == 0]
 
-        unique_groups = comb_table_df['group'].unique()
-        dfs = [comb_table_df[comb_table_df['group'] == group] for group in unique_groups]
-        group_counter = 1
-        to_merge = []
+    # Sort the data by 'bottom'
+    data_sorted = dff.sort_values(by='bottom')
 
-        for df in dfs[:]:
-            if df['bottom'].duplicated().any():
-                unique_x1 = df['x1'].unique()
-                for x1 in unique_x1:
-                    df.loc[df['x1'] == x1, 'TEST'] = group_counter
-                    group_counter += 1
-            else:
-                to_merge.append(df)
+    # Group the data by 'bottom' and create new columns for each text in the same line
+    grouped = data_sorted.groupby('bottom')['text'].apply(lambda x: x.reset_index(drop=True)).unstack().reset_index()
+    # Calculate the minimum x0 value for each group (line)
+    min_x0 = data_sorted.groupby('bottom')['x0'].min().reset_index(name='min_x0')
 
-        dfs = [df for df in dfs if id(df) not in [id(d) for d in to_merge]]
-        new_dfs = []
+    # Merge the min_x0 values back into the grouped dataframe
+    grouped_with_min_x0 = pd.merge(grouped, min_x0, on='bottom')
+    # Fill NaN values with the first non-NaN value of each row
+    filled_grouped = grouped_with_min_x0.apply(lambda row: row.ffill(axis=0).bfill(axis=0), axis=1)
 
-        for df in dfs[:]:
-            unique_tests = df['TEST'].dropna().unique()
-            for test_value in unique_tests:
-                temp_df = df[df['TEST'] == test_value].copy()
-                if len(temp_df) > 1:
-                    temp_df = temp_df.drop(columns=['TEST'])
-                    new_dfs.append(temp_df)
-                    df.drop(temp_df.index, inplace=True)
+    # Replace 'NaN' strings with the first value in each row
+    for col in filled_grouped.columns[1:-1]:  # Exclude 'bottom' and 'min_x0' columns
+        filled_grouped[col] = filled_grouped[col].replace('NaN', method='ffill').replace('NaN', method='bfill')
 
-            if not df.empty:
-                new_dfs = [pd.concat([new_df, df], ignore_index=True) for new_df in new_dfs]
+    grps = comb_table_df['group'].unique().tolist()
 
-        dfs = to_merge + new_dfs
-        df_min_x0_tuples = [(df, df['x0'].min()) for df in dfs]
-        df_min_x0_tuples_sorted = sorted(df_min_x0_tuples, key=lambda x: x[1])
-        dfs = [df_tuple[0] for df_tuple in df_min_x0_tuples_sorted]
+    df_min_x0_tuples = []
+    for i, grp in enumerate(grps):
+        df_grp = comb_table_df[comb_table_df['group'] == grp]
+        if not df_grp['bottom'].is_unique:
+            data_sorted = df_grp.sort_values(by='bottom')
 
-        merged_df = merge_list_of_dataframes(dfs)
-        merged_df_list.append(merged_df)
+            # Group the data by 'bottom' and create new columns for each text in the same line
+            grouped = data_sorted.groupby('bottom')['text'].apply(lambda x: x.reset_index(drop=True)).unstack().reset_index()
+            # Calculate the minimum x0 value for each group (line)
+            min_x0 = data_sorted.groupby('bottom')['x0'].min().reset_index(name='min_x0')
+
+            # Merge the min_x0 values back into the grouped dataframe
+            grouped_with_min_x0 = pd.merge(grouped, min_x0, on='bottom')
+            # Fill NaN values with the first non-NaN value of each row
+            filled_grouped = grouped_with_min_x0.apply(lambda row: row.ffill(axis=0).bfill(axis=0), axis=1)
+
+            # Replace 'NaN' strings with the first value in each row
+            for col in filled_grouped.columns[1:-1]:  # Exclude 'bottom' and 'min_x0' columns
+                filled_grouped[col] = filled_grouped[col].replace('NaN', method='ffill').replace('NaN', method='bfill')
+
+            min_x0 = filled_grouped['min_x0'].min()
+            result_df = filled_grouped.sort_values(by='bottom')
+            result_df = result_df.drop(columns=['min_x0'])
+            for col in result_df.columns.tolist():
+                if col != 'bottom':
+                    result_df_col = result_df[['bottom', col]].rename(columns={col: 'text'})
+                    df_min_x0_tuples.append((result_df_col, min_x0))
+            
+        else:
+            min_x0 = df_grp['x0'].min()
+            result_df = df_grp.sort_values(by='bottom')[['text','bottom']]
+            df_min_x0_tuples.append((result_df, min_x0))
+
+    # Sort the list of tuples by min_x0
+    df_min_x0_tuples_sorted = sorted(df_min_x0_tuples, key=lambda x: x[1])
+
+    # Extract the sorted DataFrames into a list
+    dfs = [df_tuple[0] for df_tuple in df_min_x0_tuples_sorted]
+
+    merged_df = merge_list_of_dataframes(dfs)
+#
+    merged_df_list.append(merged_df)
+
     return merged_df_list
 
 def extract_text_between_delimiters(df, pdf_path, page, bottom=82):
@@ -595,55 +623,6 @@ def extract_text_between_delimiters(df, pdf_path, page, bottom=82):
     document.save(output_pdf_path)
     document.close()
 
-# def draw_rectangles_for_materials(input_pdf_path, output_pdf_path, scraping_base):
-#     # Open the existing PDF
-#     document = fitz.open(input_pdf_path)
-    
-#     # Iterate over each material
-#     for material, data in scraping_base.items():
-#         material_title_df = pd.DataFrame(data['material_title'])
-#         pages = data['pages_num']
-#         pages_content_df = pd.concat([pd.DataFrame(page_content) for page_content in data['pages_content']])
-#         remarks_df = pd.DataFrame(data['remarks'])
-        
-#         # Iterate over each specified page for the material
-#         for page_num in pages:
-#             page = document[page_num - 1]  # Pages are 0-indexed in PyMuPDF
-            
-#             # Draw rectangles over titles
-
-#             # Iterate over each title entry
-#             for index, row in material_title_df.iterrows():
-#                 page_n = row['page']  # Get the page number for this title
-#                 page = document[page_n]  # Pages are 0-indexed in PyMuPDF
-                
-#                 # Define the coordinates for the rectangle
-#                 rect = fitz.Rect(row['x0'], row['top'], row['x1'], row['bottom'])
-                
-#                 # Draw the rectangle on the page
-#                 page.draw_rect(rect, width=1, color=(1, 0, 0))
-            
-#             # Draw rectangles over remarks on the correct page
-#             page_remarks = remarks_df[remarks_df['page'] == page_num]
-#             page = document[page_num - 1]
-#             for index, row in page_remarks.iterrows():
-#                 # Define the coordinates for the rectangle
-#                 rect = fitz.Rect(row['x0'], row['top'], row['x1'], row['bottom'])
-                
-#                 # Draw the rectangle on the page
-#                 page.draw_rect(rect, width=1, color=(0, 1, 0))  # Green rectangle for remarks, width=1
-
-#             page = document[page_num - 1]
-#             # Draw rectangle over each table
-#             for table, bbox, table_page in data['tables']:
-#                 if table_page == page_num - 1:  # Only draw if the table is on the current page
-#                     rect = fitz.Rect(bbox['bbox_start'], bbox['bbox_top'], bbox['bbox_end'], bbox['bbox_bottom'])
-#                     page.draw_rect(rect, width=1, color=(0, 0, 1))  # Blue rectangle for tables
-    
-#     # Save the modified PDF to a new file
-#     document.save(output_pdf_path)
-#     document.close()
-
 def draw_rectangles_for_materials(input_pdf_path, output_pdf_path, scraping_base, padding=2):
     # Open the existing PDF
     document = fitz.open(input_pdf_path)
@@ -660,7 +639,7 @@ def draw_rectangles_for_materials(input_pdf_path, output_pdf_path, scraping_base
         """Process and draw rectangles over material titles."""
         for _, row in material_title_df.iterrows():
             page_num = row['page']
-            page = document[page_num - 1]  # Pages are 0-indexed in PyMuPDF
+            page = document[page_num] # Pages are 0-indexed in PyMuPDF
             draw_rectangle(page, row['x0'], row['top'], row['x1'], row['bottom'], color=(1, 0, 0), fill_color=(1, 0, 0, 0.))
 
     def process_remarks(remarks_df, page_num, document):
