@@ -256,13 +256,86 @@ def merge_list_of_dataframes(dfs):
 
     return merged_df
 
+def extract_table(selected_p, content):
+    df = content
+    page_text_df = content
+
+    bounding_box = extract_cols(page_text_df, 'x1', 2)
+
+    # Compute margin_top
+    df['margin_top'] = df['bottom'] - df['top'].shift(1)
+    df['margin_top'] = df['margin_top'].fillna(0)
+    df['margin_top'] = df.apply(lambda row: 0 if row['top'] == df['top'].shift(1).loc[row.name] else row['margin_top'], axis=1)
+
+    gap_y_df = df[df['margin_top'] > 27]
+    combined_data = np.concatenate((bounding_box[['min_bottom']], bounding_box[['max_top']]), axis=0)
+
+    if 'combined_data' in locals() and combined_data.shape[0] > 0:
+        scaler = MinMaxScaler()
+        normalized_combined_data = scaler.fit_transform(combined_data)
+        split_index = len(bounding_box)
+        normalized_min_bottom = normalized_combined_data[:split_index]
+        normalized_max_top = normalized_combined_data[split_index:]
+        bounding_box['min_bottom_normalized'] = np.round(normalized_min_bottom, 0)
+        bounding_box['max_top_normalized'] = np.round(normalized_max_top, 0)
+
+        grouped = bounding_box.groupby(['min_bottom_normalized'])
+        list_of_dfs = [group.reset_index(drop=True) for _, group in grouped]
+
+        list_of_top_bottom_bbox = []
+        for _, group in grouped:
+            if len(group) > 1:
+                list_of_top_bottom_bbox.append({
+                    'bbox_top': float(group['max_top'].min()),
+                    'bbox_bottom': float(group['min_bottom'].max())
+                })
+
+        list_of_bbox = []
+        list_of_table_df = []
+        for top_bottom_bbox in list_of_top_bottom_bbox:
+            bbox_top, bbox_bottom = top_bottom_bbox['bbox_top'], top_bottom_bbox['bbox_bottom']
+            gap_y_df['top_diff'] = np.abs(gap_y_df['top'] - bbox_top)
+            gap_y_df['bottom_diff'] = np.abs(gap_y_df['bottom'] - bbox_bottom)
+            gap_y_df['total_diff'] = gap_y_df['top_diff'] + gap_y_df['bottom_diff']
+            nearest_row = gap_y_df.loc[gap_y_df['total_diff'].idxmin()]
+            nearest_row['top']
+            gap_y_df['top_diff'] = np.abs(gap_y_df['top'] - bbox_top)
+            nearest_top_row = gap_y_df.loc[gap_y_df['top_diff'].idxmin()]
+            nearest_top_df = gap_y_df[gap_y_df['top'] == nearest_top_row['top']]
+            bbox_top_final, bbox_bottom_final = nearest_top_df['top'], bbox_bottom
+            padding = 5
+            bbox_top_final, bbox_bottom_final = float(nearest_top_df['top']), float(bbox_bottom)
+
+            table_df = page_text_df[(page_text_df['top'] >= bbox_top_final - padding) & (page_text_df['bottom'] <= bbox_bottom_final + padding)]
+            bbox_start, bbox_end = float(table_df['x0'].min()), float(table_df['x1'].max())
+
+            list_of_bbox.append({
+                'bbox_top': bbox_top_final,
+                'bbox_bottom': bbox_bottom_final,
+                'bbox_start': bbox_start,
+                'bbox_end': bbox_end
+            })
+            list_of_table_df.append(table_df)
+
+        with pdfplumber.open("mcs2024.pdf") as pdf:
+            im = pdf.pages[selected_p].to_image(resolution=50)
+
+        border_color = "blue"
+
+        for bbox in list_of_bbox:
+            im.draw_rect([bbox['bbox_start'] - padding, bbox['bbox_top'] - padding, bbox['bbox_end'] + padding, bbox['bbox_bottom'] + padding], stroke=border_color, stroke_width=1)
+
+        return list_of_table_df, im
+    else:
+        print("Dataframe is either not defined or empty. Scaling not applied.")
+        return [], None
+
 def table_to_df(list_of_table_df):
     merged_df_list = []
     for df in list_of_table_df:
         comb_table_df = complexe_word(list_of_table_df[0], 0)
         groups = []
 
-        # Iterate through each combination of rows to form groups
         for i, row1 in comb_table_df.iterrows():
             added_to_any_group = False
             for group in groups:
@@ -272,29 +345,20 @@ def table_to_df(list_of_table_df):
             if not added_to_any_group:
                 groups.append([i])
 
-        # Add group labels to the dataframe
         comb_table_df['group'] = -1
         group_label = 0
         for group in groups:
             for index in group:
-                if comb_table_df.at[index, 'group'] == -1:  # Assign a new group label if not already assigned
+                if comb_table_df.at[index, 'group'] == -1:
                     comb_table_df.at[index, 'group'] = group_label
             group_label += 1
-        
+
         unique_groups = comb_table_df['group'].unique()
-
-        dfs = []
-
-        # Loop over the unique values and create a DataFrame for each group
-        for group in unique_groups:
-            df_group = comb_table_df[comb_table_df['group'] == group]
-            dfs.append(df_group)
-        
+        dfs = [comb_table_df[comb_table_df['group'] == group] for group in unique_groups]
         group_counter = 1
         to_merge = []
 
         for df in dfs[:]:
-            # Check if there are any duplicated 'bottom' values
             if df['bottom'].duplicated().any():
                 unique_x1 = df['x1'].unique()
                 for x1 in unique_x1:
@@ -306,150 +370,26 @@ def table_to_df(list_of_table_df):
         dfs = [df for df in dfs if id(df) not in [id(d) for d in to_merge]]
         new_dfs = []
 
-        ## act here
         for df in dfs[:]:
-            unique_tests = df['TEST'].dropna().unique()  # Get unique TEST values, ignoring NaNs
+            unique_tests = df['TEST'].dropna().unique()
             for test_value in unique_tests:
                 temp_df = df[df['TEST'] == test_value].copy()
-                if len(temp_df) > 1:  # Check if this subset has repeated values
-                    temp_df = temp_df.drop(columns=['TEST'])  
+                if len(temp_df) > 1:
+                    temp_df = temp_df.drop(columns=['TEST'])
                     new_dfs.append(temp_df)
-                    df.drop(temp_df.index, inplace=True) 
+                    df.drop(temp_df.index, inplace=True)
 
             if not df.empty:
                 new_dfs = [pd.concat([new_df, df], ignore_index=True) for new_df in new_dfs]
 
-        dfs =  to_merge + new_dfs  
-
-        df_min_x0_tuples = []
-
-        # Loop over the unique values and create a DataFrame for each group with its corresponding min_x0
-        for df in dfs:
-        # print(df)
-            min_x0 = df['x0'].min()
-            df_min_x0_tuples.append((df, min_x0))
-
-            # Sort the list of tuples by min_x0
+        dfs = to_merge + new_dfs
+        df_min_x0_tuples = [(df, df['x0'].min()) for df in dfs]
         df_min_x0_tuples_sorted = sorted(df_min_x0_tuples, key=lambda x: x[1])
-
-        # Extract the sorted DataFrames into a list
         dfs = [df_tuple[0] for df_tuple in df_min_x0_tuples_sorted]
 
         merged_df = merge_list_of_dataframes(dfs)
-
         merged_df_list.append(merged_df)
     return merged_df_list
-
-def extract_table(selected_p, content):
-    df = content
-    page_text_df = content
-
-    bounding_box = extract_cols(page_text_df, 'x1', 2)
-
-        # Compute margin_top
-    # refering to previous word (in reading order)
-    df['margin_top'] = df['bottom'] - df['top'].shift(1)
-
-    # Fill the last value of margin_top with 0 or NaN as it has no preceding word
-    df['margin_top'] = df['margin_top'].fillna(0)
-
-    # set margin_top to 0 words in same line
-    df['margin_top'] = df.apply(lambda row: 0 if row['top'] == df['top'].shift(
-        1).loc[row.name] else row['margin_top'], axis=1)
-
-    gap_y_df = df[df['margin_top'] > 27]
-    # Perspective : change threshold using statistic (example : quantile 75 of margin_top)
-
-    # Initialize the MinMaxScaler
-    scaler = MinMaxScaler()
-
-    combined_data = np.concatenate(
-        (bounding_box[['min_bottom']], bounding_box[['max_top']]), axis=0)
-
-    # Initialize the MinMaxScaler
-    scaler = MinMaxScaler()
-
-    # Fit and transform the combined data
-    normalized_combined_data = scaler.fit_transform(combined_data)
-
-    # Split the combined data back into two columns
-    split_index = len(bounding_box)
-    normalized_min_bottom = normalized_combined_data[:split_index]
-    normalized_max_top = normalized_combined_data[split_index:]
-
-    # Assign the scaled values back to the DataFrame
-    bounding_box['min_bottom_normalized'] = np.round(normalized_min_bottom, 0)
-    bounding_box['max_top_normalized'] = np.round(normalized_max_top, 0)
-
-    # Group by 'min_bottom_normalized' and 'max_top_normalized'
-    grouped = bounding_box.groupby(['min_bottom_normalized'])
-
-    # Convert each group into a separate dataframe and store them in a list
-    list_of_dfs = [group.reset_index(drop=True) for _, group in grouped]
-
-    list_of_top_bottom_bbox = []
-    for _, group in grouped:
-        if len(group) > 1:
-            list_of_top_bottom_bbox.append({
-                'bbox_top': float(group['max_top'].min()),
-                'bbox_bottom': float(group['min_bottom'].max())
-            })
-            
-    list_of_bbox = []
-    list_of_table_df = []
-    for top_bottom_bbox in list_of_top_bottom_bbox:
-        bbox_top, bbox_bottom = top_bottom_bbox['bbox_top'], top_bottom_bbox['bbox_bottom']
-
-        # Find the nearest 'top' and 'bottom' values in the dataframe
-        gap_y_df['top_diff'] = np.abs(gap_y_df['top'] - bbox_top)
-        gap_y_df['bottom_diff'] = np.abs(gap_y_df['bottom'] - bbox_bottom)
-        gap_y_df['total_diff'] = gap_y_df['top_diff'] + gap_y_df['bottom_diff']
-
-        # Get the row with the minimum total difference
-        nearest_row = gap_y_df.loc[gap_y_df['total_diff'].idxmin()]
-        nearest_row['top']
-
-        # Calculate the differences between bbox_top and the 'top' values in the dataframe
-        gap_y_df['top_diff'] = np.abs(gap_y_df['top'] - bbox_top)
-
-        # Find the row with the minimum 'top_diff' and maximum 'bottom_diff'
-        nearest_top_row = gap_y_df.loc[gap_y_df['top_diff'].idxmin()]
-
-        # Filter the dataframe to only include rows with the nearest 'top' and 'bottom' values
-        nearest_top_df = gap_y_df[gap_y_df['top'] == nearest_top_row['top']]
-        bbox_top_final, bbox_bottom_final = nearest_top_df['top'], bbox_bottom
-
-        padding = 5
-
-        bbox_top_final, bbox_bottom_final = float(
-            nearest_top_df['top']), float(bbox_bottom)
-
-        table_df = page_text_df[(page_text_df['top'] >= bbox_top_final - padding)
-                                & (page_text_df['bottom'] <= bbox_bottom_final + padding)]
-
-        bbox_start, bbox_end = float(
-            table_df['x0'].min()), float(table_df['x1'].max())
-
-        list_of_bbox.append({
-            'bbox_top': bbox_top_final,
-            'bbox_bottom': bbox_bottom_final,
-            'bbox_start': bbox_start,
-            'bbox_end': bbox_end
-        })
-        list_of_table_df.append(table_df)
-        
-    with pdfplumber.open("mcs2024.pdf") as pdf:
-        im = pdf.pages[selected_p].to_image(resolution=50)
-
-    # Draw a rectangle using the bounding box coordinates
-    border_color = "blue"
-
-    for bbox in list_of_bbox:
-        # Draw a rectangle using the bounding box coordinates with specified colors
-        im.draw_rect([bbox['bbox_start'] - padding, bbox['bbox_top'] - padding, bbox['bbox_end'] + padding, bbox['bbox_bottom'] + padding],
-                    stroke=border_color, stroke_width=1)
-
-    return list_of_table_df, im
 
 def extract_text_between_delimiters(df, pdf_path, page, bottom=82):
     '''
