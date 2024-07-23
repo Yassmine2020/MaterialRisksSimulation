@@ -755,4 +755,14 @@ def draw_rectangles_for_materials(input_pdf_path, output_pdf_path, scraping_base
     document.save(output_pdf_path)
     document.close()
 
+def split_dataframe(df, split_indices):
+    dfs = []
+    start_col = 0
+    for index in split_indices:
+        dfs.append(df.iloc[:, start_col:index])
+        start_col = index + 1
+    # Append the last segment
+    dfs.append(df.iloc[:, start_col:])
+    return dfs
+
 # print('horay')
