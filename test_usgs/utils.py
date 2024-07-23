@@ -8,6 +8,7 @@ from decimal import Decimal, getcontext
 from collections import Counter
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
+import re
 
 
 def extract_word_positions(pdf_path, i):
@@ -317,20 +318,101 @@ def extract_table(selected_p, content):
             })
             list_of_table_df.append(table_df)
 
-        with pdfplumber.open("mcs2024.pdf") as pdf:
-            im = pdf.pages[selected_p].to_image(resolution=50)
+        # with pdfplumber.open("mcs2024.pdf") as pdf:
+        #     im = pdf.pages[selected_p].to_image(resolution=50)
 
-        border_color = "blue"
+        # border_color = "blue"
 
-        for bbox in list_of_bbox:
-            im.draw_rect([bbox['bbox_start'] - padding, bbox['bbox_top'] - padding, bbox['bbox_end'] + padding, bbox['bbox_bottom'] + padding], stroke=border_color, stroke_width=1)
+        # for bbox in list_of_bbox:
+        #     im.draw_rect([bbox['bbox_start'] - padding, bbox['bbox_top'] - padding, bbox['bbox_end'] + padding, bbox['bbox_bottom'] + padding], stroke=border_color, stroke_width=1)
 
-        return list_of_table_df, list_of_bbox, selected_p, im
+        return list_of_table_df, list_of_bbox, selected_p
     else:
         print("Dataframe is either not defined or empty. Scaling not applied.")
         return [], [], selected_p, None
 
-def table_to_df(list_of_table_df):
+def spot_indice (list_of_table_df, list_of_bbox, selected_p, pdf_path):
+  list_table_and_bbox = list(zip(list_of_table_df, list_of_bbox))
+
+  indice_bbox_table = []
+  for table_df, bbox in list_table_and_bbox:
+    with pdfplumber.open(pdf_path) as pdf:
+      
+      page_ch = pdf.pages[selected_p]
+      chars = page_ch.chars
+      
+      # Filter words that fall within the specified coordinates
+      chars_in_area = [
+          char for char in chars 
+          if  bbox['bbox_top'] - 1.3 <= char['top'] and bbox['bbox_bottom'] >= char['bottom']
+      ]
+
+      list_of_indices = []
+      for char in chars_in_area:
+        if char['height'] < table_df['height'].mode()[0]:  # 5? 1 , depends on the siituation
+          char_left = {key: char[key] for key in ['text', 'x0', 'x1', 'bottom', 'top', 'height', 'width']}
+          list_of_indices.append(char_left)
+
+      indice_bbox_table.append({
+                'table_df': table_df,
+                'bbox': bbox,
+                'indices': list_of_indices
+            })
+  
+  return indice_bbox_table
+
+def update_words_coordinates(indice_bbox_table):
+    for entry in indice_bbox_table:
+        words_df = entry['table_df']
+        bbox = entry['bbox']
+        chars_in_area = entry['indices']
+        
+        # Iterate over each character in the chars_in_area
+        for char in chars_in_area:
+            char_x0, char_top, char_x1, char_bottom = char['x0'], char['top'], char['x1'], char['bottom']
+
+            # Find the word that contains this character
+            for idx, word_row in words_df.iterrows():
+                word_x0, word_top, word_x1, word_bottom = word_row['x0'], word_row['top'], word_row['x1'], word_row['bottom']
+                
+                if (word_x0 <= char_x0 <= word_x1 and word_top <= char_top <= word_bottom):
+                    word_text = word_row['text']
+                    char_text = char['text']
+                    
+                    # Check if the character is on the left or right boundary of the word
+                    if char_x0 <= word_x0:  # Character is to the left
+                        # Remove the first occurrence of the character
+                        word_text = word_text.replace(char_text, '', 1)
+                        # Update the word text and coordinates
+                        words_df.at[idx, 'text'] = word_text
+                        words_df.at[idx, 'x0'] = char_x1
+                    elif char_x1 >= word_x1:  # Character is to the right
+                        # Remove the last occurrence of the character
+                        word_text = word_text[::-1].replace(char_text[::-1], '', 1)[::-1]
+                        # Update the word text and coordinates
+                        words_df.at[idx, 'text'] = word_text
+                        words_df.at[idx, 'x1'] = char_x0
+                    
+                    # Update the width of the word
+                    words_df.at[idx, 'width'] = words_df.at[idx, 'x1'] - words_df.at[idx, 'x0']
+                    
+                    break  # Break after finding and processing the matching word
+    
+    return indice_bbox_table
+
+def table_to_df(list_of_table_df, list_of_bbox, selected_p, pdf_path):
+
+    indice_bbox_table = spot_indice(list_of_table_df, list_of_bbox, selected_p, pdf_path)
+    indice_bbox_table = update_words_coordinates(indice_bbox_table)
+
+    for i in range(len(indice_bbox_table)):
+        list_of_table_df[i] = indice_bbox_table[i]['table_df']
+
+    for i in range(len(list_of_table_df)):
+        table_df = list_of_table_df[i]
+        mode_height = table_df['height'].mode()[0] - 3
+        list_of_table_df[i] = table_df[table_df['height'] >= round(mode_height, 0)]
+
     merged_df_list = []
     for df in list_of_table_df:
         comb_table_df = complexe_word(list_of_table_df[0], 0)
