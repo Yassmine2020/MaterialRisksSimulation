@@ -351,7 +351,7 @@ def spot_indice (list_of_table_df, list_of_bbox, selected_p, pdf_path):
 
       list_of_indices = []
       for char in chars_in_area:
-        if char['height'] < table_df['height'].mode()[0] - 0.1:  # 5? 1 , depends on the siituation
+        if char['height'] < table_df['height'].mode()[0] - 0.01:  # 5? 1 , depends on the siituation
           char_left = {key: char[key] for key in ['text', 'x0', 'x1', 'bottom', 'top', 'height', 'width']}
           list_of_indices.append(char_left)
 
