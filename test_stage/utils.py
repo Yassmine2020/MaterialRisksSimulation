@@ -49,7 +49,7 @@ def extract_positions_for_elements(pdf_path, material_pages):
     return content
 
 
-def extract_cols(words_df, coordinate_param, round_param):
+def extract_cols(words_df, coordinate_param, round_param, threshold=0.1):
     '''
     Extract columns based on x0 or x1 coordinates and calculate min and max positions.
 
@@ -67,7 +67,9 @@ def extract_cols(words_df, coordinate_param, round_param):
     # filter alignment in lines starts
     words_df2 = words_df2[words_df2['x0'] > 50]
 
-    # round to detect alignment
+    words_df2[coordinate_param] = (words_df2[coordinate_param] // threshold) * threshold
+    
+    # Round to detect alignment
     words_df2[coordinate_param] = round(words_df2[coordinate_param], round_param)
     
     grouped = words_df2.groupby(coordinate_param)

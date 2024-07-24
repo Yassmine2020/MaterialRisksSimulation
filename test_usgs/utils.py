@@ -29,7 +29,7 @@ def extract_word_positions(pdf_path, i):
         words_df = pd.DataFrame(words)
     return words_df
 
-def extract_cols(words_df, coordinate_param, round_param):
+def extract_cols(words_df, coordinate_param, round_param, threshold=0.1):
     '''
     Extract columns based on x0 or x1 coordinates and calculate min and max positions.
 
@@ -47,7 +47,9 @@ def extract_cols(words_df, coordinate_param, round_param):
     # filter alignment in lines starts
     words_df2 = words_df2[words_df2['x0'] > 50]
 
-    # round to detect alignment
+    # words_df2[coordinate_param] = (words_df2[coordinate_param] // threshold) * threshold
+    
+    # Round to detect alignment
     words_df2[coordinate_param] = round(words_df2[coordinate_param], round_param)
     
     grouped = words_df2.groupby(coordinate_param)
@@ -349,7 +351,7 @@ def spot_indice (list_of_table_df, list_of_bbox, selected_p, pdf_path):
 
       list_of_indices = []
       for char in chars_in_area:
-        if char['height'] < table_df['height'].mode()[0]:  # 5? 1 , depends on the siituation
+        if char['height'] < table_df['height'].mode()[0] - 0.1:  # 5? 1 , depends on the siituation
           char_left = {key: char[key] for key in ['text', 'x0', 'x1', 'bottom', 'top', 'height', 'width']}
           list_of_indices.append(char_left)
 
