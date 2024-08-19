@@ -767,4 +767,62 @@ def split_dataframe(df, split_indices):
     dfs.append(df.iloc[:, start_col:])
     return dfs
 
+def convert_to_serializable(obj):
+    if isinstance(obj, pd.DataFrame):
+        return obj.to_dict(orient='records')  # Convert DataFrame to list of dictionaries
+    elif isinstance(obj, pd.Series):
+        return obj.to_list()  # Convert Series to list
+    return obj  # Return the object as is if it's not a DataFrame or Series
+
+# Recursively traverse and convert DataFrames in the dictionary
+def serialize_dict(d):
+    for key, value in d.items():
+        if isinstance(value, dict):
+            serialize_dict(value)  # Recurse into nested dictionaries
+        else:
+            d[key] = convert_to_serializable(value)
+
+def find_all_chemical_compositions(text, materials_list, reference_db):
+    """
+    Find all chemical compositions based on the text.
+
+    Args:
+        text (str): Text containing material names.
+        materials_list (list): List of material names to match.
+        reference_db (pd.DataFrame): DataFrame containing chemical compositions.
+
+    Returns:
+        list: List of chemical compositions if any materials are found, else None.
+    """
+    matched_materials = []
+    for material in materials_list:
+        if re.search(re.escape(material.lower()), text.lower()):
+            matched_materials.append(material)
+    compositions = []
+    for material in matched_materials:
+        filtered_df = reference_db[reference_db['sub_material_name'] == material]
+        if not filtered_df.empty:
+            comp = filtered_df['chemical_composition'].values[0]
+            compositions.append(comp)
+    return compositions if compositions else None
+
+def find_metric_conversion_factor(text, metrics_list, metric_conversion_df):
+    """
+    Find the metric conversion factor based on the text.
+
+    Args:
+        text (str): Text containing metric units.
+        metrics_list (list): List of metric units to match.
+        metric_conversion_df (pd.DataFrame): DataFrame containing metric conversion factors.
+
+    Returns:
+        float or str: The conversion factor if a metric unit is found, else None.
+    """
+    for metric in metrics_list:
+        if re.search(re.escape(metric.lower()), text.lower()):
+            factor = metric_conversion_df[metric_conversion_df['Metric Mentioned'] == metric]['conversion_factor']
+            if not factor.empty:
+                return factor.values[0]
+    return None
+
 # print('horay')
