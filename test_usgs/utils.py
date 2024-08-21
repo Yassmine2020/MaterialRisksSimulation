@@ -351,7 +351,7 @@ def spot_indice (list_of_table_df, list_of_bbox, selected_p, pdf_path):
 
       list_of_indices = []
       for char in chars_in_area:
-        if char['height'] < table_df['height'].mode()[0] - 0.01:  # 5? 1 , depends on the siituation
+        if char['height'] < table_df['height'].mode()[0] - 0.01:  # 5? 1 , depends on the situation
           char_left = {key: char[key] for key in ['text', 'x0', 'x1', 'bottom', 'top', 'height', 'width']}
           list_of_indices.append(char_left)
 
@@ -417,7 +417,7 @@ def table_to_df(list_of_table_df, list_of_bbox, selected_p, pdf_path):
 
     merged_df_list = []
     for df in list_of_table_df:
-        comb_table_df = complexe_word(list_of_table_df[0], 0)
+        comb_table_df = complexe_word(df, 0)
         groups = []
 
         for i, row1 in comb_table_df.iterrows():
@@ -437,69 +437,69 @@ def table_to_df(list_of_table_df, list_of_bbox, selected_p, pdf_path):
                     comb_table_df.at[index, 'group'] = group_label
             group_label += 1
 #
-    dff = comb_table_df[comb_table_df['group'] == 0]
+        dff = comb_table_df[comb_table_df['group'] == 0]
 
-    # Sort the data by 'bottom'
-    data_sorted = dff.sort_values(by='bottom')
+        # Sort the data by 'bottom'
+        data_sorted = dff.sort_values(by='bottom')
 
-    # Group the data by 'bottom' and create new columns for each text in the same line
-    grouped = data_sorted.groupby('bottom')['text'].apply(lambda x: x.reset_index(drop=True)).unstack().reset_index()
-    # Calculate the minimum x0 value for each group (line)
-    min_x0 = data_sorted.groupby('bottom')['x0'].min().reset_index(name='min_x0')
+        # Group the data by 'bottom' and create new columns for each text in the same line
+        grouped = data_sorted.groupby('bottom')['text'].apply(lambda x: x.reset_index(drop=True)).unstack().reset_index()
+        # Calculate the minimum x0 value for each group (line)
+        min_x0 = data_sorted.groupby('bottom')['x0'].min().reset_index(name='min_x0')
 
-    # Merge the min_x0 values back into the grouped dataframe
-    grouped_with_min_x0 = pd.merge(grouped, min_x0, on='bottom')
-    # Fill NaN values with the first non-NaN value of each row
-    filled_grouped = grouped_with_min_x0.apply(lambda row: row.ffill(axis=0).bfill(axis=0), axis=1)
+        # Merge the min_x0 values back into the grouped dataframe
+        grouped_with_min_x0 = pd.merge(grouped, min_x0, on='bottom')
+        # Fill NaN values with the first non-NaN value of each row
+        filled_grouped = grouped_with_min_x0.apply(lambda row: row.ffill(axis=0).bfill(axis=0), axis=1)
 
-    # Replace 'NaN' strings with the first value in each row
-    for col in filled_grouped.columns[1:-1]:  # Exclude 'bottom' and 'min_x0' columns
-        filled_grouped[col] = filled_grouped[col].replace('NaN', method='ffill').replace('NaN', method='bfill')
+        # Replace 'NaN' strings with the first value in each row
+        for col in filled_grouped.columns[1:-1]:  # Exclude 'bottom' and 'min_x0' columns
+            filled_grouped[col] = filled_grouped[col].replace('NaN', method='ffill').replace('NaN', method='bfill')
 
-    grps = comb_table_df['group'].unique().tolist()
+        grps = comb_table_df['group'].unique().tolist()
 
-    df_min_x0_tuples = []
-    for i, grp in enumerate(grps):
-        df_grp = comb_table_df[comb_table_df['group'] == grp]
-        if not df_grp['bottom'].is_unique:
-            data_sorted = df_grp.sort_values(by='bottom')
+        df_min_x0_tuples = []
+        for i, grp in enumerate(grps):
+            df_grp = comb_table_df[comb_table_df['group'] == grp]
+            if not df_grp['bottom'].is_unique:
+                data_sorted = df_grp.sort_values(by='bottom')
 
-            # Group the data by 'bottom' and create new columns for each text in the same line
-            grouped = data_sorted.groupby('bottom')['text'].apply(lambda x: x.reset_index(drop=True)).unstack().reset_index()
-            # Calculate the minimum x0 value for each group (line)
-            min_x0 = data_sorted.groupby('bottom')['x0'].min().reset_index(name='min_x0')
+                # Group the data by 'bottom' and create new columns for each text in the same line
+                grouped = data_sorted.groupby('bottom')['text'].apply(lambda x: x.reset_index(drop=True)).unstack().reset_index()
+                # Calculate the minimum x0 value for each group (line)
+                min_x0 = data_sorted.groupby('bottom')['x0'].min().reset_index(name='min_x0')
 
-            # Merge the min_x0 values back into the grouped dataframe
-            grouped_with_min_x0 = pd.merge(grouped, min_x0, on='bottom')
-            # Fill NaN values with the first non-NaN value of each row
-            filled_grouped = grouped_with_min_x0.apply(lambda row: row.ffill(axis=0).bfill(axis=0), axis=1)
+                # Merge the min_x0 values back into the grouped dataframe
+                grouped_with_min_x0 = pd.merge(grouped, min_x0, on='bottom')
+                # Fill NaN values with the first non-NaN value of each row
+                filled_grouped = grouped_with_min_x0.apply(lambda row: row.ffill(axis=0).bfill(axis=0), axis=1)
 
-            # Replace 'NaN' strings with the first value in each row
-            for col in filled_grouped.columns[1:-1]:  # Exclude 'bottom' and 'min_x0' columns
-                filled_grouped[col] = filled_grouped[col].replace('NaN', method='ffill').replace('NaN', method='bfill')
+                # Replace 'NaN' strings with the first value in each row
+                for col in filled_grouped.columns[1:-1]:  # Exclude 'bottom' and 'min_x0' columns
+                    filled_grouped[col] = filled_grouped[col].replace('NaN', method='ffill').replace('NaN', method='bfill')
 
-            min_x0 = filled_grouped['min_x0'].min()
-            result_df = filled_grouped.sort_values(by='bottom')
-            result_df = result_df.drop(columns=['min_x0'])
-            for col in result_df.columns.tolist():
-                if col != 'bottom':
-                    result_df_col = result_df[['bottom', col]].rename(columns={col: 'text'})
-                    df_min_x0_tuples.append((result_df_col, min_x0))
-            
-        else:
-            min_x0 = df_grp['x0'].min()
-            result_df = df_grp.sort_values(by='bottom')[['text','bottom']]
-            df_min_x0_tuples.append((result_df, min_x0))
+                min_x0 = filled_grouped['min_x0'].min()
+                result_df = filled_grouped.sort_values(by='bottom')
+                result_df = result_df.drop(columns=['min_x0'])
+                for col in result_df.columns.tolist():
+                    if col != 'bottom':
+                        result_df_col = result_df[['bottom', col]].rename(columns={col: 'text'})
+                        df_min_x0_tuples.append((result_df_col, min_x0))
+                
+            else:
+                min_x0 = df_grp['x0'].min()
+                result_df = df_grp.sort_values(by='bottom')[['text','bottom']]
+                df_min_x0_tuples.append((result_df, min_x0))
 
-    # Sort the list of tuples by min_x0
-    df_min_x0_tuples_sorted = sorted(df_min_x0_tuples, key=lambda x: x[1])
+        # Sort the list of tuples by min_x0
+        df_min_x0_tuples_sorted = sorted(df_min_x0_tuples, key=lambda x: x[1])
 
-    # Extract the sorted DataFrames into a list
-    dfs = [df_tuple[0] for df_tuple in df_min_x0_tuples_sorted]
+        # Extract the sorted DataFrames into a list
+        dfs = [df_tuple[0] for df_tuple in df_min_x0_tuples_sorted]
 
-    merged_df = merge_list_of_dataframes(dfs)
-#
-    merged_df_list.append(merged_df)
+        merged_df = merge_list_of_dataframes(dfs)
+    #
+        merged_df_list.append(merged_df)
 
     return merged_df_list
 
