@@ -29,14 +29,93 @@ def extract_word_positions(pdf_path, i):
         words_df = pd.DataFrame(words)
     return words_df
 
-def extract_cols(words_df, coordinate_param, round_param, threshold=0.1):
+# def extract_cols(words_df, coordinate_param, round_param, x_threshold=3, y_threshold=15):
+#     '''
+#     Extract columns based on x0 or x1 coordinates and calculate min and max positions.
+#     Iteratively include elements with similar x1 values and expand column boundaries.
+
+#     Input:
+#     words_df (DataFrame): containing words and their positions.
+#     coordinate_param (str): The coordinate to group by ('x0' or 'x1').
+#     round_param (int): The degree to which the coordinates should be rounded.
+#     x_threshold (float): The threshold for considering x1 values as similar.
+#     y_threshold (float): The threshold for considering elements close to current boundaries.
+
+#     Output:
+#     result_df (DataFrame): containing the group names (x0 or x1), min_bottom, and max_top for each group.
+#     '''
+
+#     words_df2 = words_df.copy()
+        
+#     # filter alignment in lines starts
+#     words_df2 = words_df2[words_df2['x0'] > 50]
+    
+#     # Round to detect alignment
+#     words_df2[coordinate_param] = round(words_df2[coordinate_param], round_param)
+    
+#     grouped = words_df2.groupby(coordinate_param)
+
+#     # Initialize lists to store the results
+#     min_bottoms = []    
+#     max_tops = []
+#     group_names = []
+
+#     # Iterate over each group
+#     for name, group in grouped:
+#         # Filter group with at least n_lines
+#         n_lines = 4
+#         if len(group) >= n_lines:
+#             # Initialize min_bottom and max_top
+#             min_bottom = group['bottom'].max()
+#             max_top = group['top'].min()
+#             mean_x1 = group['x1'].mean()
+
+#             # Iteratively expand boundaries
+#             while True:
+#                 # Find elements with similar x1 and close to current boundaries
+#                 similar_x1 = words_df2[
+#                     (abs(words_df2['x1'] - mean_x1) <= x_threshold) &
+#                     ((abs(words_df2['bottom'] - min_bottom) <= y_threshold) |
+#                      (abs(words_df2['top'] - max_top) <= y_threshold))
+#                 ]
+
+#                 # Check if we found new elements
+#                 new_min_bottom = similar_x1['bottom'].max() if not similar_x1.empty else min_bottom
+#                 new_max_top = similar_x1['top'].min() if not similar_x1.empty else max_top
+
+#                 # If no change in boundaries, break the loop
+#                 if new_min_bottom == min_bottom and new_max_top == max_top:
+#                     break
+
+#                 # Update boundaries and mean_x1
+#                 min_bottom = new_min_bottom
+#                 max_top = new_max_top
+#                 mean_x1 = similar_x1['x1'].mean() if not similar_x1.empty else mean_x1
+
+#             # Append the results to the lists
+#             group_names.append(name)
+#             min_bottoms.append(min_bottom)
+#             max_tops.append(max_top)
+
+#     result_df = pd.DataFrame({
+#         coordinate_param: group_names,
+#         'min_bottom': min_bottoms,
+#         'max_top': max_tops
+#     })
+
+#     return result_df
+
+def extract_cols(words_df, coordinate_param, round_param, x_threshold=3, y_threshold=15):
     '''
     Extract columns based on x0 or x1 coordinates and calculate min and max positions.
+    Iteratively include elements with similar x1 values and expand column boundaries from the bottom.
 
     Input:
     words_df (DataFrame): containing words and their positions.
     coordinate_param (str): The coordinate to group by ('x0' or 'x1').
     round_param (int): The degree to which the coordinates should be rounded.
+    x_threshold (float): The threshold for considering x1 values as similar.
+    y_threshold (float): The threshold for considering elements close to current boundaries.
 
     Output:
     result_df (DataFrame): containing the group names (x0 or x1), min_bottom, and max_top for each group.
@@ -46,8 +125,6 @@ def extract_cols(words_df, coordinate_param, round_param, threshold=0.1):
         
     # filter alignment in lines starts
     words_df2 = words_df2[words_df2['x0'] > 50]
-
-    # words_df2[coordinate_param] = (words_df2[coordinate_param] // threshold) * threshold
     
     # Round to detect alignment
     words_df2[coordinate_param] = round(words_df2[coordinate_param], round_param)
@@ -64,15 +141,35 @@ def extract_cols(words_df, coordinate_param, round_param, threshold=0.1):
         # Filter group with at least n_lines
         n_lines = 4
         if len(group) >= n_lines:
-            # Calculate the max of 'bottom' and min of 'top' for the group
+            # Initialize min_bottom and max_top
             min_bottom = group['bottom'].max()
             max_top = group['top'].min()
+            mean_x1 = group['x1'].mean()
+
+            # Iteratively expand boundaries from the bottom
+            while True:
+                # Find elements with similar x1 and close to current bottom boundary
+                similar_x1 = words_df2[
+                    (abs(words_df2['x1'] - mean_x1) <= x_threshold) &
+                    (abs(words_df2['bottom'] - min_bottom) <= y_threshold) &
+                    (words_df2['bottom'] >= min_bottom)  # Only consider elements below or at the current bottom
+                ]
+
+                # Check if we found new elements
+                new_min_bottom = similar_x1['bottom'].max() if not similar_x1.empty else min_bottom
+
+                # If no change in bottom boundary, break the loop
+                if new_min_bottom == min_bottom:
+                    break
+
+                # Update bottom boundary and mean_x1
+                min_bottom = new_min_bottom
+                mean_x1 = similar_x1['x1'].mean() if not similar_x1.empty else mean_x1
 
             # Append the results to the lists
             group_names.append(name)
             min_bottoms.append(min_bottom)
             max_tops.append(max_top)
-
 
     result_df = pd.DataFrame({
         coordinate_param: group_names,
@@ -263,7 +360,7 @@ def extract_table(selected_p, content):
     df = content
     page_text_df = content
 
-    bounding_box = extract_cols(page_text_df, 'x1', 2)
+    bounding_box = extract_cols(page_text_df, 'x1', 2) 
 
     # Compute margin_top
     df['margin_top'] = df['bottom'] - df['top'].shift(1)
@@ -310,6 +407,8 @@ def extract_table(selected_p, content):
             bbox_top_final, bbox_bottom_final = float(nearest_top_df['top']), float(bbox_bottom)
 
             table_df = page_text_df[(page_text_df['top'] >= bbox_top_final - padding) & (page_text_df['bottom'] <= bbox_bottom_final + padding)]
+
+            # act here!
             bbox_start, bbox_end = float(table_df['x0'].min()), float(table_df['x1'].max())
 
             list_of_bbox.append({
