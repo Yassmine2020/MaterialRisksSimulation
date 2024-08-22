@@ -437,6 +437,82 @@ def merge_list_of_dataframes(dfs):
 #         print("Dataframe is either not defined or empty. Scaling not applied.")
 #         return [], [], selected_p, None
 
+# def extract_table(selected_p, content):
+#     df = content
+#     page_text_df = content
+
+#     bounding_box = extract_cols(page_text_df, 'x1', 2) 
+
+#     # Compute margin_top
+#     df['margin_top'] = df['bottom'] - df['top'].shift(1)
+#     df['margin_top'] = df['margin_top'].fillna(0)
+#     df['margin_top'] = df.apply(lambda row: 0 if row['top'] == df['top'].shift(1).loc[row.name] else row['margin_top'], axis=1)
+
+#     gap_y_df = df[df['margin_top'] > 27]
+#     combined_data = np.concatenate((bounding_box[['min_bottom']], bounding_box[['max_top']]), axis=0)
+
+#     if 'combined_data' in locals() and combined_data.shape[0] > 0:
+#         scaler = MinMaxScaler()
+#         normalized_combined_data = scaler.fit_transform(combined_data)
+#         split_index = len(bounding_box)
+#         normalized_min_bottom = normalized_combined_data[:split_index]
+#         normalized_max_top = normalized_combined_data[split_index:]
+#         bounding_box['min_bottom_normalized'] = np.round(normalized_min_bottom, 0)
+#         bounding_box['max_top_normalized'] = np.round(normalized_max_top, 0)
+
+#         grouped = bounding_box.groupby(['min_bottom_normalized'])
+#         list_of_dfs = [group.reset_index(drop=True) for _, group in grouped]
+
+#         list_of_top_bottom_bbox = []
+#         for _, group in grouped:
+#             if len(group) > 1:
+#                 list_of_top_bottom_bbox.append({
+#                     'bbox_top': float(group['max_top'].min()),
+#                     'bbox_bottom': float(group['min_bottom'].max())
+#                 })
+
+#         list_of_bbox = []
+#         list_of_table_df = []
+#         for top_bottom_bbox in list_of_top_bottom_bbox:
+#             bbox_top, bbox_bottom = top_bottom_bbox['bbox_top'], top_bottom_bbox['bbox_bottom']
+#             gap_y_df['top_diff'] = np.abs(gap_y_df['top'] - bbox_top)
+#             gap_y_df['bottom_diff'] = np.abs(gap_y_df['bottom'] - bbox_bottom)
+#             gap_y_df['total_diff'] = gap_y_df['top_diff'] + gap_y_df['bottom_diff']
+#             nearest_row = gap_y_df.loc[gap_y_df['total_diff'].idxmin()]
+#             nearest_row['top']
+#             gap_y_df['top_diff'] = np.abs(gap_y_df['top'] - bbox_top)
+#             nearest_top_row = gap_y_df.loc[gap_y_df['top_diff'].idxmin()]
+#             nearest_top_df = gap_y_df[gap_y_df['top'] == nearest_top_row['top']]
+#             bbox_top_final, bbox_bottom_final = nearest_top_df['top'], bbox_bottom
+#             padding = 5
+#             bbox_top_final, bbox_bottom_final = float(nearest_top_df['top']), float(bbox_bottom)
+
+#             table_df = page_text_df[(page_text_df['top'] >= bbox_top_final - padding) & (page_text_df['bottom'] <= bbox_bottom_final + padding)]
+
+#             # act here!
+#             bbox_start, bbox_end = float(table_df['x0'].min()), float(table_df['x1'].max())
+
+#             list_of_bbox.append({
+#                 'bbox_top': bbox_top_final,
+#                 'bbox_bottom': bbox_bottom_final,
+#                 'bbox_start': bbox_start,
+#                 'bbox_end': bbox_end
+#             })
+#             list_of_table_df.append(table_df)
+
+#         # with pdfplumber.open("mcs2024.pdf") as pdf:
+#         #     im = pdf.pages[selected_p].to_image(resolution=50)
+
+#         # border_color = "blue"
+
+#         # for bbox in list_of_bbox:
+#         #     im.draw_rect([bbox['bbox_start'] - padding, bbox['bbox_top'] - padding, bbox['bbox_end'] + padding, bbox['bbox_bottom'] + padding], stroke=border_color, stroke_width=1)
+
+#         return list_of_table_df, list_of_bbox, selected_p
+#     else:
+#         print("Dataframe is either not defined or empty. Scaling not applied.")
+#         return [], [], selected_p, None
+
 def extract_table(selected_p, content):
     df = content
     page_text_df = content
@@ -483,13 +559,43 @@ def extract_table(selected_p, content):
             gap_y_df['top_diff'] = np.abs(gap_y_df['top'] - bbox_top)
             nearest_top_row = gap_y_df.loc[gap_y_df['top_diff'].idxmin()]
             nearest_top_df = gap_y_df[gap_y_df['top'] == nearest_top_row['top']]
-            bbox_top_final, bbox_bottom_final = nearest_top_df['top'], bbox_bottom
-            padding = 5
             bbox_top_final, bbox_bottom_final = float(nearest_top_df['top']), float(bbox_bottom)
+            print(f'🟢 bbox_top_final : {bbox_top_final}')
+            padding = 5
 
             table_df = page_text_df[(page_text_df['top'] >= bbox_top_final - padding) & (page_text_df['bottom'] <= bbox_bottom_final + padding)]
 
-            # act here!
+            # New code to modify table_df based on the specified conditions
+            threshold = 120  # You may need to adjust this value
+            # eligible_elements = table_df[table_df['x0'] > threshold]
+            # # print(f'🟢 eligible_elements: {eligible_elements}')
+            
+            # if not eligible_elements.empty:
+            #     elem = eligible_elements.loc[eligible_elements['top'].idxmin()]
+            #     print(f'▶️  elem: {elem}')
+            #     table_df = table_df[table_df['top'] >= elem['top']]
+                
+            #     # Update bbox_top_final
+            #     bbox_top_final = float(elem['top'])
+            #     print(f'🟠 bbox_top_final : {bbox_top_final}')
+
+            # Step 1: Find the leftmost elements for each row (unique 'bottom' value)
+            leftmost_elements = table_df.groupby('bottom').apply(lambda x: x.loc[x['x0'].idxmin()])
+
+            # Step 2: Check which of these leftmost elements have x0 > threshold
+            eligible_elements = leftmost_elements[leftmost_elements['x0'] > threshold]
+
+            if not eligible_elements.empty:
+                # Step 3: Among eligible elements, find the one with minimum top
+                elem = eligible_elements.loc[eligible_elements['top'].idxmin()]
+                
+                print(f'▶️  Selected elem: {elem}')
+                table_df = table_df[table_df['top'] >= elem['top']]
+                
+                # Update bbox_top_final
+                bbox_top_final = float(elem['top'])
+                print(f'🟠 Updated bbox_top_final : {bbox_top_final}')    
+
             bbox_start, bbox_end = float(table_df['x0'].min()), float(table_df['x1'].max())
 
             list_of_bbox.append({
@@ -499,14 +605,6 @@ def extract_table(selected_p, content):
                 'bbox_end': bbox_end
             })
             list_of_table_df.append(table_df)
-
-        # with pdfplumber.open("mcs2024.pdf") as pdf:
-        #     im = pdf.pages[selected_p].to_image(resolution=50)
-
-        # border_color = "blue"
-
-        # for bbox in list_of_bbox:
-        #     im.draw_rect([bbox['bbox_start'] - padding, bbox['bbox_top'] - padding, bbox['bbox_end'] + padding, bbox['bbox_bottom'] + padding], stroke=border_color, stroke_width=1)
 
         return list_of_table_df, list_of_bbox, selected_p
     else:
