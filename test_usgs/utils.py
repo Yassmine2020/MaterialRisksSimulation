@@ -356,6 +356,87 @@ def merge_list_of_dataframes(dfs):
 
     return merged_df
 
+# def extract_table(selected_p, content):
+#     df = content
+#     page_text_df = content
+
+#     bounding_box = extract_cols(page_text_df, 'x1', 2) 
+
+#     # Compute margin_top
+#     df['margin_top'] = df['bottom'] - df['top'].shift(1)
+#     df['margin_top'] = df['margin_top'].fillna(0)
+#     df['margin_top'] = df.apply(lambda row: 0 if row['top'] == df['top'].shift(1).loc[row.name] else row['margin_top'], axis=1)
+
+#     gap_y_df = df[df['margin_top'] > 27]
+#     combined_data = np.concatenate((bounding_box[['min_bottom']], bounding_box[['max_top']]), axis=0)
+
+#     if 'combined_data' in locals() and combined_data.shape[0] > 0:
+#         scaler = MinMaxScaler()
+#         normalized_combined_data = scaler.fit_transform(combined_data)
+#         split_index = len(bounding_box)
+#         normalized_min_bottom = normalized_combined_data[:split_index]
+#         normalized_max_top = normalized_combined_data[split_index:]
+#         bounding_box['min_bottom_normalized'] = np.round(normalized_min_bottom, 0)
+#         bounding_box['max_top_normalized'] = np.round(normalized_max_top, 0)
+
+#         grouped = bounding_box.groupby(['min_bottom_normalized'])
+#         list_of_dfs = [group.reset_index(drop=True) for _, group in grouped]
+
+#         list_of_top_bottom_bbox = []
+#         for _, group in grouped:
+#             if len(group) > 1:
+#                 list_of_top_bottom_bbox.append({
+#                     'bbox_top': float(group['max_top'].min()),
+#                     'bbox_bottom': float(group['min_bottom'].max())
+#                 })
+
+#         list_of_bbox = []
+#         list_of_table_df = []
+#         for top_bottom_bbox in list_of_top_bottom_bbox:
+#             bbox_top, bbox_bottom = top_bottom_bbox['bbox_top'], top_bottom_bbox['bbox_bottom']
+#             gap_y_df['top_diff'] = np.abs(gap_y_df['top'] - bbox_top)
+#             gap_y_df['bottom_diff'] = np.abs(gap_y_df['bottom'] - bbox_bottom)
+#             gap_y_df['total_diff'] = gap_y_df['top_diff'] + gap_y_df['bottom_diff']
+#             nearest_row = gap_y_df.loc[gap_y_df['total_diff'].idxmin()]
+#             nearest_row['top']
+#             gap_y_df['top_diff'] = np.abs(gap_y_df['top'] - bbox_top)
+#             nearest_top_row = gap_y_df.loc[gap_y_df['top_diff'].idxmin()]
+#             nearest_top_df = gap_y_df[gap_y_df['top'] == nearest_top_row['top']]
+#             bbox_top_final, bbox_bottom_final = float(nearest_top_df['top']), float(bbox_bottom)
+#             padding = 5
+
+#             table_df = page_text_df[(page_text_df['top'] >= bbox_top_final - padding) & (page_text_df['bottom'] <= bbox_bottom_final + padding)]
+            
+#             # Define your threshold
+#             threshold = 100  # Replace with your desired threshold
+
+#             # Sort the dataframe by 'top' to ensure we get the topmost element first
+#             table_df_sorted = table_df.sort_values('top')
+
+#             # Find the first element with x0 > threshold
+#             first_element = table_df_sorted[table_df_sorted['x0'] > threshold].iloc[0] if not table_df_sorted[table_df_sorted['x0'] > threshold].empty else None
+
+#             if first_element is not None:
+#                 # Redefine bbox_top_final based on the first_element
+#                 bbox_top_final = float(first_element['top'])
+#                 # Use the first_element to cut off all elements with a greater 'top' value
+#                 table_df = table_df[table_df['top'] <= first_element['top']]
+
+#             bbox_start, bbox_end = float(table_df['x0'].min()), float(table_df['x1'].max())
+
+#             list_of_bbox.append({
+#                 'bbox_top': bbox_top_final,
+#                 'bbox_bottom': bbox_bottom_final,
+#                 'bbox_start': bbox_start,
+#                 'bbox_end': bbox_end
+#             })
+#             list_of_table_df.append(table_df)
+
+#         return list_of_table_df, list_of_bbox, selected_p
+#     else:
+#         print("Dataframe is either not defined or empty. Scaling not applied.")
+#         return [], [], selected_p, None
+
 def extract_table(selected_p, content):
     df = content
     page_text_df = content
