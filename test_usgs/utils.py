@@ -580,7 +580,12 @@ def extract_table(selected_p, content):
             #     print(f'🟠 bbox_top_final : {bbox_top_final}')
 
             # Step 1: Find the leftmost elements for each row (unique 'bottom' value)
-            leftmost_elements = table_df.groupby('bottom').apply(lambda x: x.loc[x['x0'].idxmin()])
+            # leftmost_elements = table_df.groupby('bottom').apply(lambda x: x.loc[x['x0'].idxmin()])
+
+            def group_by_bottom_with_tolerance(bottom, tolerance=2):
+                return np.round(bottom / tolerance) * tolerance
+
+            leftmost_elements = table_df.groupby(lambda x: group_by_bottom_with_tolerance(table_df.loc[x, 'bottom'])).apply(lambda x: x.loc[x['x0'].idxmin()])
 
             # Step 2: Check which of these leftmost elements have x0 > threshold
             eligible_elements = leftmost_elements[leftmost_elements['x0'] > threshold]
@@ -588,8 +593,8 @@ def extract_table(selected_p, content):
             if not eligible_elements.empty:
                 # Step 3: Among eligible elements, find the one with minimum top
                 elem = eligible_elements.loc[eligible_elements['top'].idxmin()]
-                
-                print(f'▶️  Selected elem: {elem}')
+                print(f'▶️ Selected_p: {selected_p}')
+                print(f'▶️ Selected elem: {elem}')
                 table_df = table_df[table_df['top'] >= elem['top']]
                 
                 # Update bbox_top_final
