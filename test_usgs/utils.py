@@ -8,7 +8,7 @@ from decimal import Decimal, getcontext
 from collections import Counter
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
-import re
+import ast
 
 
 def extract_word_positions(pdf_path, i):
@@ -872,4 +872,84 @@ def convert_dict_to_df(d):
         return {k: convert_dict_to_df(v) for k, v in d.items()}
     else:
         return d
+
+def match_composition(input_name, reference_df):
+    # Convert input to string and lowercase
+    input_name = str(input_name).lower()
+
+    # Find the best match in the reference dataframe
+    best_match = max(reference_df['Sub Material Name'], 
+                     key=lambda x: fuzz.partial_ratio(input_name, str(x).lower()))
+
+    # Calculate the match ratio
+    match_ratio = fuzz.partial_ratio(input_name, best_match.lower())
+
+    # If the match ratio is below 70, return None
+    if match_ratio < 70:
+        return None
+
+    # Return the corresponding chemical composition
+    composition = reference_df.loc[reference_df['Sub Material Name'] == best_match, 'Chemical Composition'].iloc[0]
+
+    return composition
+
+def convert_string_to_dict(input_data):
+    if input_data is None:
+        return None
+    
+    if isinstance(input_data, str):
+        try:
+            # Remove the percentage sign and convert to float
+            item_dict = ast.literal_eval(input_data.replace('%', ''))
+            return {k: float(v) / 100 for k, v in item_dict.items()}
+        except (ValueError, SyntaxError):
+            # If conversion fails, return the original string
+            return input_data
+    
+    if isinstance(input_data, list):
+        return [convert_string_to_dict(item) for item in input_data]
+    
+    if isinstance(input_data, dict):
+        return {k: convert_string_to_dict(v) for k, v in input_data.items()}
+    
+    # If it's neither None, str, list, nor dict, return as is
+    return input_data
+
+def clean_numeric(val):
+    if isinstance(val, str):
+        # Remove commas and any other non-numeric characters except for decimal points
+        cleaned = re.sub(r'[^\d.]+', '', val)
+        return float(cleaned) if cleaned else np.nan
+    return val
+
+def process_column(df, text_df, title_row, index, item, years):
+    for year in years:
+        if pd.notna(year):
+            chem_comp_dict = item['chem_comp']
+            if chem_comp_dict:
+                print(f'🟢 chem compo exists for {item["material"]}, year {year}')
+                for elem, percentage in chem_comp_dict.items():
+                    new_col_name = f"{elem}_{year}"
+                    try:
+                        numeric_col = text_df.iloc[2:][title_row[index]].apply(clean_numeric)
+                        print(f'🟠 numeric_col: {numeric_col} ')
+                        
+                        # Multiply only the numeric values
+                        result = numeric_col * percentage
+                        
+                        # Replace infinite values with NaN
+                        result = result.replace([np.inf, -np.inf], np.nan)
+                        
+                        # Create a new column in the original dataframe
+                        df[new_col_name] = pd.Series(index=df.index)
+                        # Assign the result to the new column, starting from the third row
+                        df.loc[df.index[2:], new_col_name] = result.values
+                        
+                        print(f'🟠 df[new_col_name]: {df[new_col_name]} ')
+                        print(f"Created new column: {new_col_name}")
+                    except Exception as e:
+                        print(f"🔴Error processing column {title_row[index]}: {str(e)}")
+            else:
+                print(f"🔴 No valid chemical composition for {item['material']}. Keeping original data.")
+
 # print('horay')
