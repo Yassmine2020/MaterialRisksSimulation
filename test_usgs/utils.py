@@ -12,6 +12,7 @@ import ast
 from fuzzywuzzy import fuzz
 import re
 
+
 def extract_word_positions(pdf_path, i):
     '''
     Extract words with their positions from a specific page of a PDF file.
@@ -111,6 +112,19 @@ def extract_cols(words_df, coordinate_param, round_param, x_threshold=3, y_thres
 
 
 def extract_table(selected_p, content, mt):
+    '''
+    Extract table data from a page.
+
+    Input:
+    selected_p (int): The selected page number.
+    content (DataFrame): The content of the page.
+    mt (float): Margin top value.
+
+    Output:
+    list_of_table_df (list): List of DataFrames containing table data.
+    list_of_bbox (list): List of bounding boxes for the tables.
+    selected_p (int): The selected page number.
+    '''
     df = content
     page_text_df = content
 
@@ -277,6 +291,15 @@ def complexe_word(words_df, round_param):
 
 
 def get_duplicated_values(input_list):
+    '''
+    Find duplicated values in a list.
+
+    Input:
+    input_list (list): List of values to check for duplicates.
+
+    Output:
+    list: List of values that appear more than once in the input list.
+    '''
     count = Counter(input_list)
     return [item for item, freq in count.items() if freq > 1]
 
@@ -311,6 +334,13 @@ def extract_largest_text(pdf_path, page):
 def match_element_in_text(materials, title):
     """
     Match the material to the titles
+
+    Input:
+    materials (list): List of material names to search for.
+    title (str): The title text to search in.
+
+    Output:
+    str or None: The matched material name if found, else None.
     """
     title = title.lower()  # Convert text to lowercase for case-insensitive matching
     for material in materials:
@@ -359,6 +389,15 @@ def extract_positions_for_elements(pdf_path, material_pages):
 
 
 def most_repeated_value(lst):
+    """
+    Find the most frequently occurring element in a list.
+
+    Input:
+    lst (list): The input list to analyze.
+
+    Output:
+    The most common element in the list.
+    """
     # Use Counter to count the frequency of each element
     counter = Counter(lst)
     # Find the most common element
@@ -367,6 +406,15 @@ def most_repeated_value(lst):
 
 
 def belongs_to_same_group(row1, row2):
+    """
+    Check if two rows belong to the same group based on their x-coordinates and bottom position.
+
+    Input:
+    row1, row2 (Series): Two rows from a DataFrame containing 'x0', 'x1', and 'bottom' coordinates.
+
+    Output:
+    bool: True if the rows belong to the same group, False otherwise.
+    """
     # Check if intervals [x0, x1] of row1 and row2 overlap
     interval1_start, interval1_end = min(
         row1['x0'], row1['x1']), max(row1['x0'], row1['x1'])
@@ -380,6 +428,16 @@ def belongs_to_same_group(row1, row2):
 
 
 def custom_outer_merge(df1, df2, iteration):
+    """
+    Perform a custom outer merge on two DataFrames based on the 'bottom' coordinate.
+
+    Input:
+    df1, df2 (DataFrame): The two DataFrames to merge.
+    iteration (int): The current iteration number, used for naming the new text column.
+
+    Output:
+    DataFrame: The merged DataFrame.
+    """
     merged = []
     used_indices_df2 = set()
     for i, row1 in df1.iterrows():
@@ -409,6 +467,15 @@ def custom_outer_merge(df1, df2, iteration):
 
 
 def merge_list_of_dataframes(dfs):
+    """
+    Merge a list of DataFrames based on their 'text' and 'bottom' columns.
+
+    Input:
+    dfs (list): A list of DataFrames to merge.
+
+    Output:
+    DataFrame: The merged DataFrame.
+    """
     if not dfs:
         return pd.DataFrame()
 
@@ -421,6 +488,18 @@ def merge_list_of_dataframes(dfs):
 
 
 def spot_indice(list_of_table_df, list_of_bbox, selected_p, pdf_path):
+    """
+    Identify and extract indices (smaller text elements) within table bounding boxes.
+
+    Input:
+    list_of_table_df (list): List of DataFrames containing table data.
+    list_of_bbox (list): List of bounding box dictionaries for each table.
+    selected_p (int): The selected page number.
+    pdf_path (str): The file path to the PDF document.
+
+    Output:
+    list: A list of dictionaries containing table DataFrames, bounding boxes, and identified indices.
+    """
     list_table_and_bbox = list(zip(list_of_table_df, list_of_bbox))
 
     indice_bbox_table = []
@@ -454,6 +533,15 @@ def spot_indice(list_of_table_df, list_of_bbox, selected_p, pdf_path):
 
 
 def update_words_coordinates(indice_bbox_table):
+    """
+    Update word coordinates in tables based on identified indices.
+
+    Input:
+    indice_bbox_table (list): A list of dictionaries containing table DataFrames, bounding boxes, and indices.
+
+    Output:
+    list: The updated indice_bbox_table with adjusted word coordinates.
+    """
     for entry in indice_bbox_table:
         words_df = entry['table_df']
         bbox = entry['bbox']
@@ -497,7 +585,18 @@ def update_words_coordinates(indice_bbox_table):
 
 
 def table_to_df(list_of_table_df, list_of_bbox, selected_p, pdf_path):
+    """
+    Convert extracted table data to structured DataFrames.
 
+    Input:
+    list_of_table_df (list): List of DataFrames containing raw table data.
+    list_of_bbox (list): List of bounding boxes for each table.
+    selected_p (int): Selected page number.
+    pdf_path (str): Path to the PDF file.
+
+    Output:
+    list: List of processed and merged DataFrames for each table.
+    """
     indice_bbox_table = spot_indice(
         list_of_table_df, list_of_bbox, selected_p, pdf_path)
     indice_bbox_table = update_words_coordinates(indice_bbox_table)
@@ -823,6 +922,18 @@ def extract_text_between_delimiters(df, pdf_path, page, bottom=82):
 
 
 def draw_rectangles_for_materials(input_pdf_path, output_pdf_path, scraping_base, padding=2):
+    """
+    Draw rectangles on a PDF to highlight materials, remarks, and tables.
+
+    Input:
+    input_pdf_path (str): Path to the input PDF file.
+    output_pdf_path (str): Path where the output PDF file will be saved.
+    scraping_base (dict): Dictionary containing information about materials, remarks, and tables.
+    padding (int): Padding for the rectangles. Default is 2.
+
+    Output:
+    None. The function saves a new PDF with drawn rectangles.
+    """
     # Open the existing PDF
     document = fitz.open(input_pdf_path)
 
@@ -892,6 +1003,16 @@ def draw_rectangles_for_materials(input_pdf_path, output_pdf_path, scraping_base
 
 
 def split_dataframe(df, split_indices):
+    """
+    Split a DataFrame into multiple DataFrames based on column indices.
+
+    Args:
+        df (pd.DataFrame): The input DataFrame to split.
+        split_indices (list): List of column indices where to split the DataFrame.
+
+    Returns:
+        list: A list of DataFrames, each containing a subset of columns from the original DataFrame.
+    """
     dfs = []
     start_col = 0
     for index in split_indices:
@@ -903,6 +1024,15 @@ def split_dataframe(df, split_indices):
 
 
 def convert_to_serializable(obj):
+    """
+    Convert pandas DataFrame or Series to a serializable format.
+
+    Args:
+        obj: The object to convert (expected to be a DataFrame, Series, or other).
+
+    Returns:
+        A serializable version of the input object.
+    """
     if isinstance(obj, pd.DataFrame):
         # Convert DataFrame to list of dictionaries
         return obj.to_dict(orient='records')
@@ -914,6 +1044,15 @@ def convert_to_serializable(obj):
 
 
 def serialize_dict(d):
+    """
+    Recursively traverse a dictionary and convert any DataFrames to serializable format.
+
+    Args:
+        d (dict): The dictionary to serialize.
+
+    Returns:
+        None. The dictionary is modified in place.
+    """
     for key, value in d.items():
         if isinstance(value, dict):
             serialize_dict(value)  # Recurse into nested dictionaries
@@ -968,6 +1107,15 @@ def find_metric_conversion_factor(text, metrics_list, metric_conversion_df):
 
 
 def convert_dict_to_df(d):
+    """
+    Recursively convert a nested dictionary or list of dictionaries to DataFrame(s).
+
+    Args:
+        d: A dictionary, list of dictionaries, or other object.
+
+    Returns:
+        pd.DataFrame, list, or dict: Converted object(s).
+    """
     if isinstance(d, list) and all(isinstance(i, dict) for i in d):
         return pd.DataFrame(d)
     elif isinstance(d, list):
@@ -979,6 +1127,16 @@ def convert_dict_to_df(d):
 
 
 def convert_string_to_dict(input_data):
+    """
+    Convert string representations of dictionaries to actual dictionaries.
+    Also handles nested structures like lists and dictionaries.
+
+    Args:
+        input_data: The input data to convert.
+
+    Returns:
+        The converted data structure.
+    """
     if input_data is None:
         return None
 
@@ -1002,13 +1160,35 @@ def convert_string_to_dict(input_data):
 
 
 def clean_numeric(val):
+    """
+    Clean a value and convert it to a numeric type if possible.
+    
+    Args:
+        val: The value to clean, can be a string or any other type.
+    
+    Returns:
+        float: The cleaned numeric value.
+        np.nan: If the cleaned value is empty or not numeric.
+    """
     if isinstance(val, str):
         # Remove commas and any other non-numeric characters except for decimal points
         cleaned = re.sub(r'[^\d.]+', '', val)
         return float(cleaned) if cleaned else np.nan
     return val
 
+
 def match_composition(input_name, reference_df):
+    """
+    Find the best matching material composition from a reference DataFrame.
+    
+    Args:
+        input_name (str): The name of the material to match.
+        reference_df (pd.DataFrame): DataFrame containing reference material names and compositions.
+    
+    Returns:
+        str: The matched composition if a good match is found (ratio > 80).
+        None: If no good match is found.
+    """
     input_name = str(input_name).lower()
     best_match = None
     best_ratio = 0
@@ -1022,13 +1202,25 @@ def match_composition(input_name, reference_df):
     composition = reference_df.loc[reference_df['sub_material_name'] == best_match, 'chemical_composition'].iloc[0]
     return composition
 
+
 def clean_numeric(val):
     if isinstance(val, str):
         cleaned = re.sub(r'[^\d.]+', '', val)
         return float(cleaned) if cleaned else np.nan
     return val
 
+
 def convert_year_to_float(year):
+    """
+    Convert a year value to a float.
+    
+    Args:
+        year: The year value, can be a string, int, or float.
+    
+    Returns:
+        float: The year as a float.
+        np.nan: If the year couldn't be converted.
+    """
     if isinstance(year, str):
         year = year.strip().lower()
         if year.endswith('e'):
@@ -1039,7 +1231,19 @@ def convert_year_to_float(year):
             return np.nan
     return int(year) if pd.notnull(year) else np.nan
 
+
 def process_column(df, text_df, title_row, index, item, years):
+    """
+    Process a column of data, applying chemical composition percentages to the values.
+    
+    Args:
+        df (pd.DataFrame): The DataFrame to update with new columns.
+        text_df (pd.DataFrame): The DataFrame containing the text data.
+        title_row (list): List of column titles.
+        index (int): The index of the current column in title_row.
+        item (dict): Dictionary containing material and chemical composition information.
+        years (list): List of years to process.
+    """
     for year in years:
         year_float = convert_year_to_float(year)
         if pd.notna(year_float):
@@ -1062,7 +1266,19 @@ def process_column(df, text_df, title_row, index, item, years):
             else:
                 print(f"🔴 No valid chemical composition for {item['material']}. Keeping original data.")
 
+
 def process_varied_composition(df, text_df, title_row, sheet_material, first_row, second_row):
+    """
+    Process columns with varied composition, creating new columns for each year.
+    
+    Args:
+        df (pd.DataFrame): The DataFrame to update with new columns.
+        text_df (pd.DataFrame): The DataFrame containing the text data.
+        title_row (list): List of column titles.
+        sheet_material (str): The name of the material for the current sheet.
+        first_row (pd.Series): The first row of the DataFrame, typically containing material names.
+        second_row (pd.Series): The second row of the DataFrame, typically containing years.
+    """
     for index, col in enumerate(title_row):
         if text_df[col].iloc[2:].apply(lambda x: pd.to_numeric(x, errors='coerce')).notna().any():
             years = second_row.iloc[index].split(',') if isinstance(second_row.iloc[index], str) else [second_row.iloc[index]]

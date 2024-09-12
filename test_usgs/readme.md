@@ -1,6 +1,10 @@
-# MCS PDF Scraper
+## MCS PDF Scraper
 
 This project scrapes mines production and reserves tables from the Mineral Commodity Summaries (MCS) PDF file and processes the data to generate a final Excel file.
+
+## Prerequisites
+
+Required Python libraries (install using pip install -r requirements.txt)
 
 ## Usage
 
@@ -62,5 +66,3 @@ If you encounter any problems:
 - Ensure all required libraries are installed.
 - Check that the PDF file is in the correct location and format.
 - Review any error messages in the notebook output.
-
-For further assistance, please open an issue in the project repository.
