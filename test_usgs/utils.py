@@ -9,8 +9,8 @@ from collections import Counter
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 import ast
-from sklearn.cluster import DBSCAN
-
+from fuzzywuzzy import fuzz
+import re
 
 def extract_word_positions(pdf_path, i):
     '''
@@ -31,56 +31,6 @@ def extract_word_positions(pdf_path, i):
     return words_df
 
 
-def extract_cols_old(words_df, coordinate_param, round_param):
-    '''
-    Extract columns based on x0 or x1 coordinates and calculate min and max positions.
-    Input:
-    words_df (DataFrame): containing words and their positions.
-    coordinate_param (str): The coordinate to group by ('x0' or 'x1').
-    round_param (int): The degree to which the coordinates should be rounded.
-    Output:
-    result_df (DataFrame): containing the group names (x0 or x1), min_bottom, and max_top for each group.
-    '''
-
-    words_df2 = words_df.copy()
-
-    words_df2 = words_df2[words_df2['x0'] > 50]
-    words_df2['x0'] = round(words_df2['x0'], round_param)
-
-    if coordinate_param == 'x0':
-        # based on x0:
-        grouped = words_df2.groupby('x0')
-
-    elif coordinate_param == 'x1':
-        grouped = words_df2.groupby('x1')
-
-    # Initialize lists to store the results
-    min_bottoms = []
-    max_tops = []
-    group_names = []
-
-    # Iterate over each group
-    for name, group in grouped:
-        if len(group) > 3:
-            # Calculate the min of 'bottom' and max of 'top' for the group
-            min_bottom = group['bottom'].max()
-            max_top = group['top'].min()
-
-            # Append the results to the lists
-            group_names.append(name)
-            min_bottoms.append(min_bottom)
-            max_tops.append(max_top)
-
-    # Create a new DataFrame with the results
-    result_df = pd.DataFrame({
-        coordinate_param: group_names,
-        'min_bottom': min_bottoms,
-        'max_top': max_tops
-    })
-    return result_df
-
-
-# TODO : fine tune x_threshold & y_threshold
 def extract_cols(words_df, coordinate_param, round_param, x_threshold=3, y_threshold=15):
     '''
     Extract columns based on x0 or x1 coordinates and calculate min and max positions.
@@ -116,7 +66,7 @@ def extract_cols(words_df, coordinate_param, round_param, x_threshold=3, y_thres
     # Iterate over each group
     for name, group in grouped:
         # Filter group with at least n_lines (kant 4)
-        n_lines = 3
+        n_lines = 2
         if len(group) >= n_lines:
             # Initialize min_bottom and max_top
             min_bottom = group['bottom'].max()
@@ -215,12 +165,31 @@ def extract_table(selected_p, content, mt):
                 nearest_top_df['top']), float(bbox_bottom)
             padding = 5
 
+            target_phrases = ['World total, natural and synthetic',
+                              'World total (ilmenite and rutile, rounded)', 'World total (rounded)', 'World total']
+
+            # Filter the dataframe to include only rows within the current bounding box
+            temp_df = page_text_df[(page_text_df['top'] >= bbox_top_final - padding) &
+                                   (page_text_df['bottom'] <= bbox_bottom_final + padding)]
+
+            comb_temp_df = complexe_word(temp_df, 0)
+
+            comb_temp_df.to_csv('sample_comb_df.csv', index=False)
+
+            # Find rows containing target phrases
+            for phrase in target_phrases:
+                target_rows = comb_temp_df[comb_temp_df['text'].str.contains(
+                    phrase, case=False, na=False, regex=False)]
+                if not target_rows.empty:
+                    # Update bbox_bottom_final to the bottom of the first detected phrase
+                    bbox_bottom_final = float(target_rows['bottom'].min())
+                    break  # Stop after finding the first match
+
             table_df = page_text_df[(page_text_df['top'] >= bbox_top_final - padding) & (
                 page_text_df['bottom'] <= bbox_bottom_final + padding)]
 
-
             # New code to modify table_df based on the specified conditions
-            threshold = 220  # You may need to adjust this value, before 120
+            threshold = 200  # You may need to adjust this value, before 120
 
             # Step 1: Find the leftmost elements for each row (unique 'bottom' value)
 
@@ -229,7 +198,6 @@ def extract_table(selected_p, content, mt):
 
             leftmost_elements = table_df.groupby(lambda x: group_by_bottom_with_tolerance(
                 table_df.loc[x, 'bottom'])).apply(lambda x: x.loc[x['x0'].idxmin()])
-
 
             # Step 2: Check which of these leftmost elements have x0 > threshold
             eligible_elements = leftmost_elements[leftmost_elements['x0'] > threshold]
@@ -253,17 +221,6 @@ def extract_table(selected_p, content, mt):
                 'bbox_end': bbox_end
             })
             list_of_table_df.append(table_df)
-
-
-            # print(table_df[[
-            #     "text",
-            #     "x0",
-            #     "x1",
-            #     "top",
-            #     "bottom"
-            # ]])
-            # print('*'*45)
-            # print()
 
         return list_of_table_df, list_of_bbox, selected_p
     else:
@@ -912,7 +869,7 @@ def draw_rectangles_for_materials(input_pdf_path, output_pdf_path, scraping_base
 
     # visualization purpose
     for page in document:
-        draw_vertical_line(page, 220)
+        draw_vertical_line(page, 200)
     # visualization purpose
 
     # Iterate over each material
@@ -1021,28 +978,6 @@ def convert_dict_to_df(d):
         return d
 
 
-def match_composition(input_name, reference_df):
-    # Convert input to string and lowercase
-    input_name = str(input_name).lower()
-
-    # Find the best match in the reference dataframe
-    best_match = max(reference_df['Sub Material Name'],
-                     key=lambda x: fuzz.partial_ratio(input_name, str(x).lower()))
-
-    # Calculate the match ratio
-    match_ratio = fuzz.partial_ratio(input_name, best_match.lower())
-
-    # If the match ratio is below 70, return None
-    if match_ratio < 70:
-        return None
-
-    # Return the corresponding chemical composition
-    composition = reference_df.loc[reference_df['Sub Material Name']
-                                   == best_match, 'Chemical Composition'].iloc[0]
-
-    return composition
-
-
 def convert_string_to_dict(input_data):
     if input_data is None:
         return None
@@ -1050,8 +985,8 @@ def convert_string_to_dict(input_data):
     if isinstance(input_data, str):
         try:
             # Remove the percentage sign and convert to float
-            item_dict = ast.literal_eval(input_data.replace('%', ''))
-            return {k: float(v) / 100 for k, v in item_dict.items()}
+            item_dict = ast.literal_eval(input_data)
+            return {k: float(v)for k, v in item_dict.items()}
         except (ValueError, SyntaxError):
             # If conversion fails, return the original string
             return input_data
@@ -1073,39 +1008,75 @@ def clean_numeric(val):
         return float(cleaned) if cleaned else np.nan
     return val
 
+def match_composition(input_name, reference_df):
+    input_name = str(input_name).lower()
+    best_match = None
+    best_ratio = 0
+    for material in reference_df['sub_material_name']:
+        ratio = fuzz.partial_ratio(input_name, str(material).lower())
+        if ratio > best_ratio:
+            best_ratio = ratio
+            best_match = material
+    if best_ratio < 80:
+        return None
+    composition = reference_df.loc[reference_df['sub_material_name'] == best_match, 'chemical_composition'].iloc[0]
+    return composition
+
+def clean_numeric(val):
+    if isinstance(val, str):
+        cleaned = re.sub(r'[^\d.]+', '', val)
+        return float(cleaned) if cleaned else np.nan
+    return val
+
+def convert_year_to_float(year):
+    if isinstance(year, str):
+        year = year.strip().lower()
+        if year.endswith('e'):
+            return float(year[:-1])
+        try:
+            return float(year)
+        except ValueError:
+            return np.nan
+    return int(year) if pd.notnull(year) else np.nan
 
 def process_column(df, text_df, title_row, index, item, years):
     for year in years:
-        if pd.notna(year):
+        year_float = convert_year_to_float(year)
+        if pd.notna(year_float):
             chem_comp_dict = item['chem_comp']
             if chem_comp_dict:
-                print(
-                    f'🟢 chem compo exists for {item["material"]}, year {year}')
                 for elem, percentage in chem_comp_dict.items():
-                    new_col_name = f"{elem}_{year}"
+                    new_col_name = f"{elem}_{year_float}"
                     try:
-                        numeric_col = text_df.iloc[2:][title_row[index]].apply(
-                            clean_numeric)
-                        print(f'🟠 numeric_col: {numeric_col} ')
-
-                        # Multiply only the numeric values
+                        numeric_col = text_df.iloc[2:][title_row[index]].apply(clean_numeric)
                         result = numeric_col * percentage
-
-                        # Replace infinite values with NaN
                         result = result.replace([np.inf, -np.inf], np.nan)
-
-                        # Create a new column in the original dataframe
-                        df[new_col_name] = pd.Series(index=df.index)
-                        # Assign the result to the new column, starting from the third row
-                        df.loc[df.index[2:], new_col_name] = result.values
-
-                        print(f'🟠 df[new_col_name]: {df[new_col_name]} ')
-                        print(f"Created new column: {new_col_name}")
+                        if new_col_name in df.columns:
+                            df[new_col_name] += result
+                        else:
+                            df[new_col_name] = pd.Series(index=df.index)
+                            df.loc[df.index[2:], new_col_name] = result.values
+                        print(f"Created/Updated column: {new_col_name}")
                     except Exception as e:
-                        print(
-                            f"🔴Error processing column {title_row[index]}: {str(e)}")
+                        print(f"🔴Error processing column {title_row[index]}: {str(e)}")
             else:
-                print(
-                    f"🔴 No valid chemical composition for {item['material']}. Keeping original data.")
+                print(f"🔴 No valid chemical composition for {item['material']}. Keeping original data.")
 
-# print('horay')
+def process_varied_composition(df, text_df, title_row, sheet_material, first_row, second_row):
+    for index, col in enumerate(title_row):
+        if text_df[col].iloc[2:].apply(lambda x: pd.to_numeric(x, errors='coerce')).notna().any():
+            years = second_row.iloc[index].split(',') if isinstance(second_row.iloc[index], str) else [second_row.iloc[index]]
+            for year in years:
+                year_float = convert_year_to_float(year)
+                if pd.notna(year_float):
+                    new_col_name = f"{sheet_material}_{year_float}"
+                    try:
+                        numeric_col = text_df.iloc[2:][col].apply(clean_numeric)
+                        if new_col_name in df.columns:
+                            df[new_col_name] += numeric_col
+                        else:
+                            df[new_col_name] = pd.Series(index=df.index)
+                            df.loc[df.index[2:], new_col_name] = numeric_col.values
+                        print(f"Created/Updated column: {new_col_name}")
+                    except Exception as e:
+                        print(f"🔴Error processing column {col}: {str(e)}")

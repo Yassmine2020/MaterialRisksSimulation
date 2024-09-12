@@ -1,0 +1,25 @@
+Metric Mentioned,conversion_factor
+Kilogram,0.001
+Thousand Metric Tons,1000
+Metric Tons,1
+Kilograms,0.001
+Million Metric Tons,1000000
+Carat (diamond),0.0000002
+Flask (fl),0.03447
+Karat (gold),"Not applicable (a fraction, not a weight)"
+Long ton (lt),101605
+Long ton unit (ltu),0.01124
+Long calcined ton (lct),"1.01605 (same as long ton, excludes water)"
+Long dry ton (ldt),"1.01605 (same as long ton, excludes moisture)"
+"Mcf (1,000 cubic feet)",Conversion varies based on gas type
+Metric ton unit (mtu),0.01
+Metric dry ton (mdt),1.0 (excludes moisture)
+Pound (lb),0.0004536
+Psia,Not applicable (pressure unit)
+Short ton (st),0.90718
+Short ton unit (stu),0.0090718
+Short dry ton (sdt),"0.90718 (same as short ton, excludes moisture)"
+Troy ounce (tr oz),3.1103e-05
+Troy pound,0.00037324
+million carats,0.2
+n thousand metric dry tons,1000
