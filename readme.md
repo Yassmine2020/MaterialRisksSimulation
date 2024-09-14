@@ -65,6 +65,7 @@ graph LR
       - `2023 Data`: Production and reserves data for 2023
     
 ## Project sturcture:
+```plaintext
 .
 ├── test_usgs/
 │   ├── .vscode/
@@ -81,3 +82,4 @@ graph LR
 │   ├── requirements.txt      # Required libraries
 │   └── utils.py              # Helper functions
 └── readme.md
+```
