@@ -13,7 +13,6 @@ graph LR
     E --> G[Export to Excel]
     F --> G
     G --> H[Process final Excel file]
-    
     C --> I[Visualize PDF extractions]
     D --> I
     E --> I
