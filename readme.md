@@ -4,6 +4,7 @@ Automatic extraction and processing of data (production volumes, reserves, etc.)
 
 ## Projects pipeline
 
+```mermaid
 graph LR
     A[PDF] --> B[Extract materials list]
     B --> C{Match materials to their pages}
@@ -13,6 +14,7 @@ graph LR
     E --> G[Export to Excel]
     F --> G
     G --> H[Process final Excel file]
+    
     C --> I[Visualize PDF extractions]
     D --> I
     E --> I
@@ -37,6 +39,7 @@ graph LR
     style H fill:#f99,stroke:#333,stroke-width:2px
     style I fill:#9ff,stroke:#333,stroke-width:2px
     style J fill:#ddd,stroke:#333,stroke-width:2px
+```
 
 ## Usage
 
