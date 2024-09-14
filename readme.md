@@ -1,68 +1,81 @@
-## MCS PDF Scraper
+## About this project
 
-This project scrapes mines production and reserves tables from the Mineral Commodity Summaries (MCS) PDF file and processes the data to generate a final Excel file.
+Automatic extraction and processing of data (production volumes, reserves, etc.) from the Mineral Commodity Summaries (MCS) PDF file, as part of research on material risks and needs for major technological transitions.
 
-## Prerequisites
+## Projects pipeline
 
-Required Python libraries (install using pip install -r requirements.txt)
+graph LR
+    A[PDF] --> B[Extract materials list]
+    B --> C{Match materials to their pages}
+    C --> D[Detect table boundaries]
+    C --> E[Extract remarks]
+    D --> F[Convert table to dataframe]
+    E --> G[Export to Excel]
+    F --> G
+    G --> H[Process final Excel file]
+    
+    C --> I[Visualize PDF extractions]
+    D --> I
+    E --> I
+    F --> I
+
+    subgraph Material_Structure
+        J[material_name: 
+          title
+          pages
+          content
+          remarks
+          tables]
+    end
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#bbf,stroke:#333,stroke-width:2px
+    style C fill:#bfb,stroke:#333,stroke-width:2px
+    style D fill:#fbf,stroke:#333,stroke-width:2px
+    style E fill:#fbb,stroke:#333,stroke-width:2px
+    style F fill:#bff,stroke:#333,stroke-width:2px
+    style G fill:#ffb,stroke:#333,stroke-width:2px
+    style H fill:#f99,stroke:#333,stroke-width:2px
+    style I fill:#9ff,stroke:#333,stroke-width:2px
+    style J fill:#ddd,stroke:#333,stroke-width:2px
 
 ## Usage
 
-Follow these steps to use the `main.ipynb` notebook:
+1. **Prepare**
+   - install required libraries using: pip install -r requirements.txt
+   - Place the MCS PDF file (e.g., `mcs2024.pdf`) in the project root directory.
 
-1. **Prepare the PDF**
-   - Place the target MCS PDF file (e.g., `mcs2024.pdf`) in the project root directory.
+3. **Run the Notebook**
+   - Open and run `main.ipynb` in Jupyter Notebook.
 
-2. **Run the Notebook**
-   - Open `main.ipynb` in Jupyter Notebook.
-   - Run the cells in order, following the instructions in each section.
+4. **Automatic Extraction**
+   - The notebook will extract materials, tables, and remarks from the PDF.
+   - Review the outputs at each step.
 
-3. **Extract Material Lists**
-   - The notebook will extract the list of materials from the PDF.
-   - Review the extracted list in the output.
+5. **Manual Review**
+   - Check and correct `production_reserve_tables1.xlsx` if needed.
+   - Save corrections as `production_reserve_tables1_updated_manually.xlsx`.
 
-4. **Match Materials with Pages**
-   - The notebook will match each material with its corresponding pages in the PDF.
-   - Check the output for any materials with empty or unusual page counts.
-
-5. **Extract Tables and Remarks**
-   - The notebook will extract tables and remarks for each material.
-   - This step generates `scraping_base_with_tables.json`.
-
-6. **Generate Initial Excel File**
-   - The notebook creates `production_reserve_tables1.xlsx`.
-
-7. **Manual Correction**
-   - Open `production_reserve_tables1.xlsx` and make any necessary corrections.
-   - Save the corrected file as `production_reserve_tables1_updated_manually.xlsx`.
-
-8. **Process Remarks**
-   - Run the cells that process the remarks and chemical compositions.
-   - This step generates `produc_reserve_remarkinterpre.xlsx`.
-
-9. **Extract Production Data**
-   - The notebook will extract and process production data for each material.
-   - This generates `production_each_material.xlsx`.
-
-10. **Final Data Processing**
-    - Run the remaining cells to process and combine the data.
-    - The final output will be saved as `final_table.xlsx`.
-
-## Output
-
-The main output file is `final_table.xlsx`, which contains two sheets:
-- `2022 Data`: Production and reserves data for 2022
-- `2023 Data`: Production and reserves data for 2023
-
-## Notes
-
-- Make sure to review the output at each step for any anomalies or errors.
-- The manual correction step is crucial for ensuring data accuracy.
-- If you encounter any issues, check the error messages and make sure all prerequisites are installed correctly.
-
-## Troubleshooting
-
-If you encounter any problems:
-- Ensure all required libraries are installed.
-- Check that the PDF file is in the correct location and format.
-- Review any error messages in the notebook output.
+6. **Final Processing**
+   - Run the remaining cells to process remarks and production data.
+   - The final output will be saved as `final_table.xlsx`, which contains two sheets:
+      - `2022 Data`: Production and reserves data for 2022
+      - `2023 Data`: Production and reserves data for 2023
+    
+## Project sturcture:
+.
+├── test_usgs/
+│   ├── .vscode/
+│   ├── __pycache__/
+│   ├── excel_output/    # Generated Excel files
+│   ├── json_files/      # Generated JSON files
+│   ├── pdf_output/      # Generated PDF files
+│   ├── sub_materials_database.csv   # Alloy composition database
+│   ├── .gitignore
+│   ├── final_table.xlsx      # Processed output table
+│   ├── generate_data.ipynb   
+│   ├── main.ipynb            # Main script
+│   ├── mcs2024.pdf           # Input PDF file
+│   ├── requirements.txt      # Required libraries
+│   └── utils.py              # Helper functions
+└── readme.md
